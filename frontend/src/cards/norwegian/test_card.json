@@ -1,0 +1,18 @@
+{
+    "word": "hund",
+    "pronounciation": "ˈhʉn",
+    "translation": [
+        {
+            "type": "noun",
+            "meaning": "Pies - normalny tak o zwierzak",
+            "gender": "masculine",
+            "countable": "true",
+            "grammar": {
+                "singularIndefinite": "en hund",
+                "singularDefinite": "hunden",
+                "pluralIndefinite": "hunder",
+                "pluralDefinite": "hundene"
+            }
+        }
+    ]
+}
