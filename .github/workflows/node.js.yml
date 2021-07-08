@@ -46,4 +46,4 @@ jobs:
     - name: Build the React app
       run: |
         cd frontend
-        npm run build
+        CI='' npm run build
