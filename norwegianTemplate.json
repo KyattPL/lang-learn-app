@@ -1,0 +1,47 @@
+{
+	"word": "",
+	"pronounciation": "",
+	"translation": [
+		{
+			"type": "",
+			"meaning": "",
+			"grammarNoun": {
+				"countable": "",
+				"gender": "",
+				"singularIndefinite": "",
+				"singularDefinite": "",
+				"pluralIndefinite": "",
+				"pluralDefinite": ""
+			},
+			"grammarAdj": {
+				"masculineSinIndef": "",
+				"masculineSinDef": "",
+				"masculinePlIndef": "",
+				"masculinePlDef": "",
+				"feminineSinIndef": "",
+				"feminineSinDef": "",
+				"femininePlIndef": "",
+				"femininePlDef": "",
+				"neuterSinIndef": "",
+				"neuterSinDef": "",
+				"neuterPlIndef": "",
+				"neuterPlDef": "",
+				"comparative": "",
+				"indefSuperlative": "",
+				"defSuperlative": ""
+			},
+			"grammarVerb": {
+				"infinitive": "",
+				"present": "",
+				"past": "",
+				"future": "",
+				"conditional": "",
+				"imperative": "",
+				"presentPerfect": "",
+				"pastPerfect": "",
+				"futurePerfect": "",
+				"conditionalPerfect": ""
+			}
+		}
+	]
+}

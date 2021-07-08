@@ -1,0 +1,13 @@
+.no-padding-container {
+    padding: 0;
+    top: 0;
+}
+
+.content {
+    align-items: stretch;
+    justify-content: space-around;
+}
+
+.deck {
+    padding-top: 10px;
+}

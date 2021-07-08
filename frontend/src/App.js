@@ -1,35 +1,15 @@
-import './App.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React from 'react';
 
-import Flashcard from './components/Flashcard.jsx';
-import Header from './components/Header.jsx';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Routes from './Routes.jsx';
 
 function App() {
-
-  let testCard = require('./cards/norwegian/test_card.json');
-
-  return (
-    <div className="App">
-      <Container fluid className="no-padding-container">
-        <Row noGutters={true}>
-          <Col>
-            <Header />
-          </Col>
-        </Row>
-        <Row noGutters={true}>
-          <Col>
-          </Col>
-          <Col>
-            <Flashcard cardObj={testCard} />
-          </Col>
-          <Col>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
+    return (
+        <Router basename={process.env.PUBLIC_URL}>
+            <Routes />
+        </Router>
+    )
 }
 
 export default App;

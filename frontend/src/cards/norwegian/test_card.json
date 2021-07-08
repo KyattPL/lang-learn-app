@@ -5,9 +5,9 @@
         {
             "type": "noun",
             "meaning": "Pies - normalny tak o zwierzak",
-            "gender": "masculine",
-            "countable": "true",
-            "grammar": {
+            "grammarNoun": {
+                "countable": "true",
+                "gender": "masculine",
                 "singularIndefinite": "en hund",
                 "singularDefinite": "hunden",
                 "pluralIndefinite": "hunder",
