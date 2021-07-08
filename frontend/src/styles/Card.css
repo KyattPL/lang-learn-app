@@ -1,0 +1,9 @@
+.card {
+    min-width: min-content !important;
+  }
+  
+@media (min-width: 576px){
+    .card-deck .card {
+        margin-bottom: 15px !important;
+    }
+}
