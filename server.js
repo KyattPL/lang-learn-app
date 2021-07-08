@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/front/build/index.html'));
+    res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;
