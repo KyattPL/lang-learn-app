@@ -19,6 +19,7 @@ frontend/coverage
 .env.test.local
 .env.production.local
 ENV.ps1
+ENV.sh
 
 npm-debug.log*
 yarn-debug.log*

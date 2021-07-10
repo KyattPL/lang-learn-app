@@ -33,10 +33,12 @@ app.post('/addNorwegianCard', (req, res) => {
 });
 
 app.post('/getNorwegianCard', (req, res) => {
+    console.log(req.body);
     const { word } = req.body;
     if (word) {
         NorwegianCard.findOne({ word: word }, (err, doc) => {
             if (err) {
+                console.log(err);
                 res.send("WORD_NOT_FOUND");
             } else {
                 res.status(200).send(doc);

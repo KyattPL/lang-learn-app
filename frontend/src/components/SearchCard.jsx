@@ -12,14 +12,39 @@ function SearchCard() {
 
     const [validated, setValidated] = useState(false);
 
-    const searchCard = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+    let hasBeenFound = false;
+    let cardInfo = null;
 
-        setValidated(true);
+    const searchCard = (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+        
+        if (event.currentTarget.checkValidity() === true) {
+            setValidated(false);
+            const wordInput = document.getElementById("wordInput");
+            fetch("/getNorwegianCard", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({word: wordInput.value})
+            }).then(response => response.text())
+            .then(data => {
+                if (data === "WORD_NOT_FOUND") {
+                    console.log("Oops, no word there!");
+                } else if (data === "MISSING_WORD") {
+                    console.log("Somehow your word wasn't passed to the backend");
+                } else {
+                    hasBeenFound = true;
+                    cardInfo = data;
+                }
+            }).catch((error) => {
+                console.error('Error:', error);
+            })
+        } else {
+            setValidated(true);
+        }
     }
 
     return (
@@ -29,26 +54,29 @@ function SearchCard() {
                 </Col>
                 <Col xs={10}>
                     <Form className="mt-2" noValidate validated={validated} onSubmit={searchCard}>
-                        <Form.Row>
-                            <Col className="flex-grow-1">
-                                <Form.Label htmlFor="inlineFormInputGroup" srOnly>
-                                    Word
-                                </Form.Label>
-                                <InputGroup className="mb-2">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text>Search:</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl required id="inlineFormInputGroup" placeholder="Word" />
-                                    <FormControl.Feedback type="invalid">Empty box!</FormControl.Feedback>
-                                </InputGroup>
-                            </Col>
-                            <Col>
-                                <Button type="submit" variant="success" className="mb-2">
+                            <Form.Label htmlFor="inlineFormInputGroup" srOnly>
+                                Word
+                            </Form.Label>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text>Search:</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl required id="wordInput" placeholder="Word" />
+                                <FormControl.Feedback style={{order: 4}} type="invalid">Empty box!</FormControl.Feedback>
+                                <Button type="submit" variant="success">
                                     Submit
                                 </Button>
-                            </Col>
-                        </Form.Row>
+                            </InputGroup>
                     </Form>
+                </Col>
+                <Col>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                </Col>
+                <Col>
+                    { hasBeenFound ? <div>Found it! {cardInfo} </div> : null }
                 </Col>
                 <Col>
                 </Col>
