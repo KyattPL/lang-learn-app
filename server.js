@@ -7,7 +7,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 
-mongoose.connect(process.env.MONGODB_URI, (err) => {
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err) => {
     if (err) console.log(err);
     else console.log(`Connected to the database`);
 });
@@ -33,18 +33,18 @@ app.post('/addNorwegianCard', (req, res) => {
 });
 
 app.post('/getNorwegianCard', (req, res) => {
-    console.log(req.body);
     const { word } = req.body;
     if (word) {
         NorwegianCard.findOne({ word: word }, (err, doc) => {
             if (err) {
                 console.log(err);
-                res.send("WORD_NOT_FOUND");
+                res.send("ERR");
             } else {
                 res.status(200).send(doc);
             }
         })
     } else {
+        console.log("no word");
         res.send("MISSING_WORD");
     }
 });
