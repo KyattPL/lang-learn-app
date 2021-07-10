@@ -6,6 +6,7 @@ import CardDeck from 'react-bootstrap/CardDeck';
 
 import NorwegianCard from './components/norwegian/NorwegianCard.jsx';
 import Header from './components/Header.jsx';
+import SearchCard from './components/SearchCard';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -40,7 +41,7 @@ function App() {
           <div>test add card</div>
         </Route>
         <Route path="/searchCard">
-          <div>test search card</div>
+          <SearchCard />
         </Route>
       </Switch>
     </div>
