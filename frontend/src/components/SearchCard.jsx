@@ -7,17 +7,24 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 
-import { useState } from 'react';
-import NorwegianCard from './norwegian/NorwegianCard';
+import { useState, useRef } from 'react';
+
+import '../styles/SearchCard.css';
+import Flashcard from './Flashcard';
 
 function SearchCard() {
 
     const [validated, setValidated] = useState(false);
+
     const [hasBeenFound, setFound] = useState(false);
     const [cardInfo, setCardInfo] = useState(null);
+    const [cardLang, setCardLang] = useState(null);
 
     const [noWord, setNoWord] = useState(null);
     const [show, setShow] = useState(false);
+
+    const wordInput = useRef(null);
+    const selectInput = useRef(null);
 
     const handleClose = () => setShow(false);
 
@@ -34,13 +41,14 @@ function SearchCard() {
 
         if (event.currentTarget.checkValidity() === true) {
             setValidated(false);
-            const wordInput = document.getElementById("wordInput");
-            fetch("/getNorwegianCard", {
+            // const wordInput = document.getElementById("wordInput");
+            // const selectInput = document.getElementById("langDropdown");
+            fetch("/getCard", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ word: wordInput.value })
+                body: JSON.stringify({ lang: selectInput.current.value, word: wordInput.current.value })
             }).then(response => response.text())
                 .then(data => {
                     if (data === "ERR") {
@@ -49,9 +57,10 @@ function SearchCard() {
                         console.log("Somehow your word wasn't passed to the backend");
                     } else {
                         if (data === '') {
-                            showModal(wordInput.value);
+                            showModal(wordInput.current.value);
                         } else {
                             setCardInfo(JSON.parse(data));
+                            setCardLang(selectInput.current.value);
                             setFound(true);
                         }
                     }
@@ -75,9 +84,16 @@ function SearchCard() {
                         </Form.Label>
                         <InputGroup>
                             <InputGroup.Prepend>
+                                <InputGroup.Text>Language:</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control className="langDropdown" ref={selectInput} as="select" defaultValue="Dutch">
+                                <option>Dutch</option>
+                                <option>Norwegian</option>
+                            </Form.Control>
+                            <InputGroup.Prepend>
                                 <InputGroup.Text>Search:</InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl required id="wordInput" placeholder="Word" />
+                            <FormControl required ref={wordInput} placeholder="Word" />
                             <FormControl.Feedback style={{ order: 4 }} type="invalid">Empty box!</FormControl.Feedback>
                             <Button type="submit" variant="success">
                                 Submit
@@ -92,7 +108,7 @@ function SearchCard() {
                 <Col>
                 </Col>
                 <Col xs={10} className="mt-2">
-                    {hasBeenFound ? <NorwegianCard cardObj={cardInfo} /> : null}
+                    {hasBeenFound ? <Flashcard cardLang={cardLang} cardObj={cardInfo} /> : null}
                 </Col>
                 <Col>
                 </Col>

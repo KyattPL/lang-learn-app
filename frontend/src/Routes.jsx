@@ -5,7 +5,8 @@ import Col from 'react-bootstrap/Col';
 import CardDeck from 'react-bootstrap/CardDeck';
 
 import Header from './components/Header.jsx';
-import SearchCard from './components/SearchCard';
+import SearchCard from './components/SearchCard.jsx';
+import AddCard from './components/AddCard.jsx';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -31,7 +32,7 @@ function App() {
           </Container>
         </Route>
         <Route path="/addCard">
-          <div>test add card</div>
+          <AddCard />
         </Route>
         <Route path="/searchCard">
           <SearchCard />

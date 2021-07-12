@@ -1,0 +1,8 @@
+.langDropdown {
+    border-color: #ced4da !important;
+    background-image: none !important;
+}
+
+.langDropdown:focus {
+    box-shadow: none !important;
+}
