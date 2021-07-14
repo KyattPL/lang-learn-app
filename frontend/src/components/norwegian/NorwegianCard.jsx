@@ -7,9 +7,23 @@ import VerbGrammarNorwegian from './VerbGrammarNorwegian';
 
 import '../../styles/Card.css';
 
-function NorwegianCard(props) {
-    let cardObj = props.cardObj;
-    let singleTranslation = cardObj.translation[0];
+function checkProperties(cardObj, numOfTranslation) {
+    let result = false;
+    if ('word' in cardObj && 'pronounciation' in cardObj && 'translation' in cardObj) {
+        let trObj = cardObj.translation[numOfTranslation];
+        if ('grammarAdj' in trObj || 'grammarNoun' in trObj || 'grammarVerb' in trObj) {
+            result = true;
+        }
+    }
+    return result;
+}
+
+function NorwegianCard({ cardObj, numOfTranslation }) {
+    let singleTranslation = cardObj.translation[numOfTranslation];
+
+    if (!checkProperties(cardObj, numOfTranslation)) {
+        throw new TypeError("Wrong card obj structure in NorwegianCard");
+    }
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -28,17 +42,17 @@ function NorwegianCard(props) {
             result = <AdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj} />
         } else if ("grammarNoun" in singleTranslation) {
             result = <NounGrammarNorwegian grammarObj={singleTranslation.grammarNoun} />
-        } else if ("grammarVerb" in singleTranslation) {
+        } else {
             result = <VerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />
         }
     } else {
         // TODO: make Grammars arranged in an order that will handle smaller devices
         if ("grammarAdj" in singleTranslation) {
-            result = null;//<AdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj} />
+            result = <div data-testid="testCard"></div>; //<AdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj} />
         } else if ("grammarNoun" in singleTranslation) {
-            result = null;//<NounGrammarNorwegian grammarObj={singleTranslation.grammarNoun} />
-        } else if ("grammarVerb" in singleTranslation) {
-            result = null;//<VerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />
+            result = <div data-testid="testCard"></div>; //<NounGrammarNorwegian grammarObj={singleTranslation.grammarNoun} />
+        } else {
+            result = <div data-testid="testCard"></div>; //<VerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />
         }
     }
 

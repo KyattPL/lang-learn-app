@@ -7,7 +7,7 @@ function Flashcard({ cardLang, cardObj }) {
 
     switch (cardLang) {
         case "Dutch": result = <DutchCard cardObj={cardObj} />; break;
-        case "Norwegian": result = <NorwegianCard cardObj={cardObj} />; break;
+        case "Norwegian": result = <NorwegianCard cardObj={cardObj} numOfTranslation={0} />; break;
         default: result = null;
     }
 

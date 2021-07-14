@@ -1,6 +1,34 @@
 import Table from 'react-bootstrap/Table';
 
+function checkProperties(grammarObj) {
+    const testObj = {
+        "masculineSinIndef": "ikke",
+        "masculineSinDef": "ikka",
+        "masculinePlIndef": "ikke",
+        "masculinePlDef": "ikka",
+        "feminineSinIndef": "ikke",
+        "feminineSinDef": "ikka",
+        "femininePlIndef": "ikke",
+        "femininePlDef": "ikka",
+        "neuterSinIndef": "eikke",
+        "neuterSinDef": "eikka",
+        "neuterPlIndef": "ikket",
+        "neuterPlDef": "ikkete",
+        "comparative": "ikketa",
+        "indefSuperlative": "ikketan",
+        "defSuperlative": "ikketane",
+        "_id": "420"
+    }
+    let origKeys = Object.keys(grammarObj).sort();
+    let testKeys = Object.keys(testObj).sort();
+    return JSON.stringify(origKeys) === JSON.stringify(testKeys);
+}
+
 function AdjGrammarNorwegian({ grammarObj }) {
+
+    if (!checkProperties(grammarObj)) {
+        throw new TypeError("Wrong grammar obj structure in AdjGrammarNorwegian");
+    }
 
     return (
         <>

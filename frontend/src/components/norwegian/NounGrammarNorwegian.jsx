@@ -1,6 +1,25 @@
 import Table from 'react-bootstrap/Table';
 
+function checkProperties(grammarObj) {
+    const testObj = {
+        "countable": "true",
+        "gender": "masculine",
+        "singularIndefinite": "en hund",
+        "singularDefinite": "hunden",
+        "pluralIndefinite": "hunder",
+        "pluralDefinite": "hundene",
+        "_id": "420"
+    }
+    let origKeys = Object.keys(grammarObj).sort();
+    let testKeys = Object.keys(testObj).sort();
+    return JSON.stringify(origKeys) === JSON.stringify(testKeys);
+}
+
 function NounGrammarNorwegian({ grammarObj }) {
+
+    if (!checkProperties(grammarObj)) {
+        throw new TypeError("Wrong grammar obj structure in NounGrammarNorwegian");
+    }
 
     return (
         <Table bordered hover size="sm">

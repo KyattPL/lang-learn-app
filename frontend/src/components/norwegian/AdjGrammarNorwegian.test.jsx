@@ -19,9 +19,10 @@ test('render AdjGrammarNorwegian ', () => {
         "neuterPlDef": "ikkete",
         "comparative": "ikketa",
         "indefSuperlative": "ikketan",
-        "defSuperlative": "ikketane"
+        "defSuperlative": "ikketane",
+        "_id": "420"
     };
-    render(<AdjGrammarNorwegian grammarObj={testObj}/>);
+    render(<AdjGrammarNorwegian grammarObj={testObj} />);
 });
 
 
@@ -38,6 +39,6 @@ test('fail AdjGrammarNorwegian on wrong prop structure', () => {
         "feminineSinDef": "ikka"
     };
     expect(() => {
-        render(<AdjGrammarNorwegian />)
+        render(<AdjGrammarNorwegian grammarObj={testObj} />)
     }).toThrowError();
 });

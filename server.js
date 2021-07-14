@@ -37,18 +37,23 @@ app.post('/addCard', (req, res) => {
 app.post('/getCard', (req, res) => {
     const { lang, word } = req.body;
     const CardModel = cardUtils.getLanguageCard(lang);
-    if (word) {
-        CardModel.findOne({ word: word }, (err, doc) => {
-            if (err) {
-                console.log(err);
-                res.send("ERR");
-            } else {
-                res.status(200).send(doc);
-            }
-        })
+    if (CardModel) {
+        if (word) {
+            CardModel.findOne({ word: word }, (err, doc) => {
+                if (err) {
+                    console.log(err);
+                    res.send("DB_ERR");
+                } else {
+                    res.status(200).send(doc);
+                }
+            })
+        } else {
+            console.log("no word");
+            res.send("MISSING_WORD_PASSED");
+        }
     } else {
-        console.log("no word");
-        res.send("MISSING_WORD");
+        console.log("no lang");
+        res.send("MISSING_LANG_PASSED");
     }
 });
 

@@ -1,6 +1,30 @@
 import Table from 'react-bootstrap/Table';
 
+function checkProperties(grammarObj) {
+    const testObj = {
+        "infinitive": "faef",
+        "present": "aefaf",
+        "past": "efffe",
+        "future": "eea",
+        "conditional": "fafa",
+        "imperative": "fafaef",
+        "presentPerfect": "va faaan",
+        "pastPerfect": "fafeee",
+        "futurePerfect": "fafaa",
+        "conditionalPerfect": "fff",
+        "_id": "420"
+    }
+    let origKeys = Object.keys(grammarObj).sort();
+    let testKeys = Object.keys(testObj).sort();
+    return JSON.stringify(origKeys) === JSON.stringify(testKeys);
+}
+
+
 function VerbGrammarNorwegian({ grammarObj }) {
+
+    if (!checkProperties(grammarObj)) {
+        throw new TypeError("Wrong grammar obj structure in VerbGrammarNorwegian");
+    }
 
     return (
         <Table bordered hover size="sm">
