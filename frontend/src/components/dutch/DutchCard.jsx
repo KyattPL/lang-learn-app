@@ -1,7 +1,7 @@
-function DutchCard() {
+function DutchCard({ cardObj, numOfTranslation }) {
     return (
         <div>
-            
+
         </div>
     )
 }

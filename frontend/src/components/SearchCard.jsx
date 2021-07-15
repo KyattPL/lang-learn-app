@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useState, useRef } from 'react';
 
 import '../styles/SearchCard.css';
-import Flashcard from './Flashcard';
+import TranslationGroup from './TranslationGroup.jsx';
 import { fetchGetCard } from '../utils/fetchGetCard.js';
 
 function SearchCard() {
@@ -52,7 +52,6 @@ function SearchCard() {
                         if (data === '') {
                             showModal(wordInput.current.value);
                         } else {
-                            // console.log(JSON.parse(data));
                             setCardInfo(JSON.parse(data));
                             setCardLang(selectInput.current.value);
                             setFound(true);
@@ -102,7 +101,7 @@ function SearchCard() {
                 <Col>
                 </Col>
                 <Col xs={10} className="mt-2">
-                    {hasBeenFound ? <Flashcard cardLang={cardLang} cardObj={cardInfo} /> : null}
+                    {hasBeenFound ? <TranslationGroup cardLang={cardLang} cardObj={cardInfo} /> : null}
                 </Col>
                 <Col>
                 </Col>
