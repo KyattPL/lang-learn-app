@@ -1,28 +1,9 @@
 import Table from 'react-bootstrap/Table';
-
-function checkProperties(grammarObj) {
-    const testObj = {
-        "infinitive": "faef",
-        "present": "aefaf",
-        "past": "efffe",
-        "future": "eea",
-        "conditional": "fafa",
-        "imperative": "fafaef",
-        "presentPerfect": "va faaan",
-        "pastPerfect": "fafeee",
-        "futurePerfect": "fafaa",
-        "conditionalPerfect": "fff",
-        "_id": "420"
-    }
-    let origKeys = Object.keys(grammarObj).sort();
-    let testKeys = Object.keys(testObj).sort();
-    return JSON.stringify(origKeys) === JSON.stringify(testKeys);
-}
-
+import { checkVerbProperties } from './utilsNorwegian.js';
 
 function VerbGrammarNorwegian({ grammarObj }) {
 
-    if (!checkProperties(grammarObj)) {
+    if (!checkVerbProperties(grammarObj)) {
         throw new TypeError("Wrong grammar obj structure in VerbGrammarNorwegian");
     }
 
@@ -31,15 +12,15 @@ function VerbGrammarNorwegian({ grammarObj }) {
             <thead>
                 <tr>
                     <th></th>
-                    <th>Present</th>
-                    <th>Past</th>
-                    <th>Future</th>
-                    <th>Conditional</th>
+                    <th className="cardTableHeader">Present</th>
+                    <th className="cardTableHeader">Past</th>
+                    <th className="cardTableHeader">Future</th>
+                    <th className="cardTableHeader">Conditional</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Simple</strong></td>
+                    <th>Simple</th>
                     <td>{grammarObj.present}</td>
                     <td>{grammarObj.past}</td>
                     <td>{grammarObj.future}</td>

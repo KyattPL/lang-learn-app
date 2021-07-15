@@ -1,23 +1,10 @@
 import Table from 'react-bootstrap/Table';
-
-function checkProperties(grammarObj) {
-    const testObj = {
-        "countable": "true",
-        "gender": "masculine",
-        "singularIndefinite": "en hund",
-        "singularDefinite": "hunden",
-        "pluralIndefinite": "hunder",
-        "pluralDefinite": "hundene",
-        "_id": "420"
-    }
-    let origKeys = Object.keys(grammarObj).sort();
-    let testKeys = Object.keys(testObj).sort();
-    return JSON.stringify(origKeys) === JSON.stringify(testKeys);
-}
+import { checkNounProperties } from './utilsNorwegian.js';
+import "../../styles/CardTable.css";
 
 function NounGrammarNorwegian({ grammarObj }) {
 
-    if (!checkProperties(grammarObj)) {
+    if (!checkNounProperties(grammarObj)) {
         throw new TypeError("Wrong grammar obj structure in NounGrammarNorwegian");
     }
 
@@ -26,8 +13,8 @@ function NounGrammarNorwegian({ grammarObj }) {
             <thead>
                 <tr>
                     <th></th>
-                    <th>Singular</th>
-                    <th>Plural</th>
+                    <th className="cardTableHeader">Singular</th>
+                    <th className="cardTableHeader">Plural</th>
                 </tr>
             </thead>
             <tbody>

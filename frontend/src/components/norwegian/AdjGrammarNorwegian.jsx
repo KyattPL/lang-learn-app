@@ -1,32 +1,10 @@
 import Table from 'react-bootstrap/Table';
-
-function checkProperties(grammarObj) {
-    const testObj = {
-        "masculineSinIndef": "ikke",
-        "masculineSinDef": "ikka",
-        "masculinePlIndef": "ikke",
-        "masculinePlDef": "ikka",
-        "feminineSinIndef": "ikke",
-        "feminineSinDef": "ikka",
-        "femininePlIndef": "ikke",
-        "femininePlDef": "ikka",
-        "neuterSinIndef": "eikke",
-        "neuterSinDef": "eikka",
-        "neuterPlIndef": "ikket",
-        "neuterPlDef": "ikkete",
-        "comparative": "ikketa",
-        "indefSuperlative": "ikketan",
-        "defSuperlative": "ikketane",
-        "_id": "420"
-    }
-    let origKeys = Object.keys(grammarObj).sort();
-    let testKeys = Object.keys(testObj).sort();
-    return JSON.stringify(origKeys) === JSON.stringify(testKeys);
-}
+import { checkAdjProperties } from './utilsNorwegian.js';
+import "../../styles/CardTable.css";
 
 function AdjGrammarNorwegian({ grammarObj }) {
 
-    if (!checkProperties(grammarObj)) {
+    if (!checkAdjProperties(grammarObj)) {
         throw new TypeError("Wrong grammar obj structure in AdjGrammarNorwegian");
     }
 
@@ -36,15 +14,15 @@ function AdjGrammarNorwegian({ grammarObj }) {
                 <thead>
                     <tr>
                         <th></th>
-                        <th colSpan="2">Singular</th>
-                        <th colSpan="2">Plural</th>
+                        <th className="cardTableHeader" colSpan="2">Singular</th>
+                        <th className="cardTableHeader" colSpan="2">Plural</th>
                     </tr>
                     <tr>
                         <th></th>
-                        <th>Indefinite</th>
-                        <th>Definite</th>
-                        <th>Indefinite</th>
-                        <th>Definite</th>
+                        <th className="cardTableHeader">Indefinite</th>
+                        <th className="cardTableHeader">Definite</th>
+                        <th className="cardTableHeader">Indefinite</th>
+                        <th className="cardTableHeader">Definite</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,9 +52,9 @@ function AdjGrammarNorwegian({ grammarObj }) {
             <Table bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>Comparative</th>
-                        <th>Indefinite superlative</th>
-                        <th>Definite superlative</th>
+                        <th className="cardTableHeader">Comparative</th>
+                        <th className="cardTableHeader">Indefinite superlative</th>
+                        <th className="cardTableHeader">Definite superlative</th>
                     </tr>
                     <tr>
                         <td>{grammarObj.comparative}</td>

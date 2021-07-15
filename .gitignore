@@ -18,6 +18,7 @@ frontend/coverage
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 ENV.ps1
 ENV.sh
 

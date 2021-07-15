@@ -7,6 +7,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 
+require('dotenv').config();
+
+console.log(process.env.MONGODB_URI);
+
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err) => {
     if (err) console.log(err);
     else console.log(`Connected to the database`);

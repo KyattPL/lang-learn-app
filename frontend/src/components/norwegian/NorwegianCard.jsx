@@ -5,6 +5,10 @@ import AdjGrammarNorwegian from './AdjGrammarNorwegian';
 import NounGrammarNorwegian from './NounGrammarNorwegian';
 import VerbGrammarNorwegian from './VerbGrammarNorwegian';
 
+import SmAdjGrammarNorwegian from './small/SmAdjGrammarNorwegian.jsx';
+import SmNounGrammarNorwegian from './small/SmNounGrammarNorwegian';
+import SmVerbGrammarNorwegian from './small/SmVerbGrammarNorwegian';
+
 import '../../styles/Card.css';
 
 function checkProperties(cardObj, numOfTranslation) {
@@ -48,11 +52,11 @@ function NorwegianCard({ cardObj, numOfTranslation }) {
     } else {
         // TODO: make Grammars arranged in an order that will handle smaller devices
         if ("grammarAdj" in singleTranslation) {
-            result = <div data-testid="testCard"></div>; //<AdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj} />
+            result = <SmAdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj}/>; //<AdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj} />
         } else if ("grammarNoun" in singleTranslation) {
-            result = <div data-testid="testCard"></div>; //<NounGrammarNorwegian grammarObj={singleTranslation.grammarNoun} />
+            result = <SmNounGrammarNorwegian grammarObj={singleTranslation.grammarNoun}/>; //<NounGrammarNorwegian grammarObj={singleTranslation.grammarNoun} />
         } else {
-            result = <div data-testid="testCard"></div>; //<VerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />
+            result = <SmVerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb}/>; //<VerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />
         }
     }
 
