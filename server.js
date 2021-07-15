@@ -16,11 +16,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err) => {
     else console.log(`Connected to the database`);
 });
 
-// const norwegianSchema = require('./langSchemas/norwegianSchema.js');
-
-// const NorwegianCard = mongoose.model("NorwegianCard", norwegianSchema.norwegianSchema, "NorwegianCards");
-// const DutchCard = mongoose.model("DutchCard", dutchSchema.dutchSchema, "DutchCards");
-
 const cardUtils = require('./cardUtils.js');
 
 app.use(express.static(path.join(__dirname, "/frontend/build")));
