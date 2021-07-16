@@ -5,33 +5,32 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Modal from 'react-bootstrap/Modal';
 
 import { useState, useRef } from 'react';
 
 import '../styles/SearchCard.css';
 import TranslationGroup from './TranslationGroup.jsx';
+import SearchCardModal from './SearchCardModal.jsx';
 import { fetchGetCard } from '../utils/fetchGetCard.js';
 
 function SearchCard() {
 
     const [validated, setValidated] = useState(false);
-
     const [hasBeenFound, setFound] = useState(false);
+    const wordInput = useRef(null);
+    const selectInput = useRef(null);
+
     const [cardInfo, setCardInfo] = useState(null);
     const [cardLang, setCardLang] = useState(null);
 
     const [noWord, setNoWord] = useState(null);
-    const [show, setShow] = useState(false);
+    const [shouldShowModal, setShouldShowModal] = useState(false);
 
-    const wordInput = useRef(null);
-    const selectInput = useRef(null);
-
-    const handleClose = () => setShow(false);
+    const handleClose = () => setShouldShowModal(false);
 
     const showModal = (missingWord) => {
         setNoWord(missingWord);
-        setShow(true);
+        setShouldShowModal(true);
         return;
     }
 
@@ -106,17 +105,7 @@ function SearchCard() {
                 <Col>
                 </Col>
             </Row>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Not in dictionary</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>We couldn't find the word {noWord} in the dictionary</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose} data-testid="testCloseModal">
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <SearchCardModal show={shouldShowModal} noWord={noWord} handleClose={handleClose}/>
         </Container>
     )
 }

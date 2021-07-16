@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
 import React from 'react';
+
+import AddCardAbstractForm from './AddCardAbstractForm.jsx';
 import '../styles/DropdownLiveSearch.css';
 
 function AddCard() {
@@ -15,9 +17,14 @@ function AddCard() {
 
     const [input, setInput] = useState("");
     const [langSelected, setLangSelected] = useState("");
+    const [grammarSelected, setGrammarSelected] = useState("");
 
     const handleLangSelect = (indexSelected) => {
         setLangSelected(langs[indexSelected - 1].lang);
+    }
+
+    const handleGrammarSelect = (grammar) => {
+        setGrammarSelected(grammar);
     }
 
     if (input.length > 0) {
@@ -78,18 +85,21 @@ function AddCard() {
                     <InputGroup>
                         <Dropdown>
                             <Dropdown.Toggle>
-                                yep
+                                {grammarSelected === '' ? "Part of speech" : grammarSelected}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item>Adjective</Dropdown.Item>
-                                <Dropdown.Item>Noun</Dropdown.Item>
-                                <Dropdown.Item>Verb</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleGrammarSelect("Adjective")}>Adjective</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleGrammarSelect("Noun")}>Noun</Dropdown.Item>
+                                <Dropdown.Item onClick={() => handleGrammarSelect("Verb")}>Verb</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </InputGroup>
                 </Col>
                 <Col>
                 </Col>
+            </Row>
+            <Row>
+                <AddCardAbstractForm langSelected={langSelected} grammarSelected={grammarSelected}/>
             </Row>
         </Container >
     )
