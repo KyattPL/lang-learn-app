@@ -50,13 +50,12 @@ function NorwegianCard({ cardObj, numOfTranslation }) {
             result = <VerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />
         }
     } else {
-        // TODO: make Grammars arranged in an order that will handle smaller devices
         if ("grammarAdj" in singleTranslation) {
-            result = <SmAdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj}/>; //<AdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj} />
+            result = <SmAdjGrammarNorwegian grammarObj={singleTranslation.grammarAdj} />;
         } else if ("grammarNoun" in singleTranslation) {
-            result = <SmNounGrammarNorwegian grammarObj={singleTranslation.grammarNoun}/>; //<NounGrammarNorwegian grammarObj={singleTranslation.grammarNoun} />
+            result = <SmNounGrammarNorwegian grammarObj={singleTranslation.grammarNoun} />;
         } else {
-            result = <SmVerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb}/>; //<VerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />
+            result = <SmVerbGrammarNorwegian grammarObj={singleTranslation.grammarVerb} />;
         }
     }
 

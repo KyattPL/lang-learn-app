@@ -1,26 +1,63 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-
+import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
+import React from 'react';
+import '../styles/DropdownLiveSearch.css';
 
 function AddCard() {
 
-    const [validated, setValidated] = useState(false);
+    let langs = [{ lang: "Dutch", index: 1 }, { lang: "Norwegian", index: 2 }];
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+    const [input, setInput] = useState("");
+    const [langSelected, setLangSelected] = useState("");
 
-        if (event.currentTarget.checkValidity() === true) {
-            setValidated(false);
-        } else {
-            setValidated(true);
-        }
+    const handleLangSelect = (indexSelected) => {
+        setLangSelected(langs[indexSelected - 1].lang);
     }
+
+    if (input.length > 0) {
+        langs = langs.filter((lang) => {
+            return lang.lang.match(input);
+        })
+    }
+
+    let options;
+    if (langs.length === 0) {
+        options = <Dropdown.Item disabled>No matches</Dropdown.Item>;
+    } else {
+        options = langs.map((lang) => <Dropdown.Item key={lang.index} onClick={() => handleLangSelect(lang.index)} eventKey={lang.index}>{lang.lang}</Dropdown.Item>);
+    }
+
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+        <Button href="" ref={ref} onClick={(e) => { e.preventDefault(); onClick(e); }}>
+            {children}
+            &#x25bc;
+        </Button>
+    ));
+
+    const CustomMenu = React.forwardRef(
+        ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
+
+            return (
+                <div ref={ref} style={style} className={className} aria-labelledby={labeledBy}>
+                    <FormControl
+                        autoFocus
+                        className="mx-3 my-2 w-auto"
+                        placeholder="Search..."
+                        onChange={(e) => setInput(e.target.value)}
+                        value={input} />
+                    <ul className="list-unstyled">
+                        {children}
+                    </ul>
+                </div>
+            );
+        },
+    );
 
     return (
         <Container fluid>
@@ -28,62 +65,33 @@ function AddCard() {
                 <Col>
                 </Col>
                 <Col xs={10}>
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} md="4" controlId="validationCustom01">
-                                <Form.Label>First name</Form.Label>
-                                <Form.Control required type="text" placeholder="First name" defaultValue="Mark" />
-                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="4" controlId="validationCustom02">
-                                <Form.Label>Last name</Form.Label>
-                                <Form.Control required type="text" placeholder="Last name" defaultValue="Otto" />
-                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                                <Form.Label>Username</Form.Label>
-                                <InputGroup hasValidation>
-                                    <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                                    <Form.Control type="text" placeholder="Username" aria-describedby="inputGroupPrepend" required />
-                                    <Form.Control.Feedback type="invalid">
-                                    Please choose a username.
-                                    </Form.Control.Feedback>
-                                </InputGroup>
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                <Form.Label>City</Form.Label>
-                                <Form.Control type="text" placeholder="City" required />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid city.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="3" controlId="validationCustom04">
-                                <Form.Label>State</Form.Label>
-                                <Form.Control type="text" placeholder="State" required />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid state.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="3" controlId="validationCustom05">
-                                <Form.Label>Zip</Form.Label>
-                                <Form.Control type="text" placeholder="Zip" required />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid zip.
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Row>
-                        <Form.Group className="mb-3">
-                            <Form.Check required label="Agree to terms and conditions" feedback="You must agree before submitting." />
-                        </Form.Group>
-                        <Button type="submit">Submit form</Button>
-                    </Form>
+                    <InputGroup>
+                        <Dropdown>
+                            <Dropdown.Toggle as={CustomToggle} id="dropdownLanguageToggle">
+                                {langSelected === '' ? "Select language" : langSelected}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className="dropdownTransform" as={CustomMenu}>
+                                {options}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </InputGroup>
+                    <InputGroup>
+                        <Dropdown>
+                            <Dropdown.Toggle>
+                                yep
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item>Adjective</Dropdown.Item>
+                                <Dropdown.Item>Noun</Dropdown.Item>
+                                <Dropdown.Item>Verb</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </InputGroup>
                 </Col>
                 <Col>
                 </Col>
             </Row>
-        </Container>
+        </Container >
     )
 }
 
