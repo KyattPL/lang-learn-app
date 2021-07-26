@@ -1,14 +1,15 @@
-import './Routes.css';
+import React, { Suspense } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CardDeck from 'react-bootstrap/CardDeck';
 
 import Header from './components/Header.jsx';
-import SearchCard from './components/SearchCard.jsx';
-import AddCard from './components/AddCard.jsx';
-
 import { Route, Switch } from 'react-router-dom';
+import './Routes.css';
+
+const SearchCard = React.lazy(() => import('./components/SearchCard.jsx'));
+const AddCard = React.lazy(() => import('./components/AddCard.jsx'));
 
 function App() {
 
@@ -32,10 +33,14 @@ function App() {
           </Container>
         </Route>
         <Route path="/addCard">
-          <AddCard />
+            <Suspense fallback={<div></div>}>
+                <AddCard />
+            </Suspense>
         </Route>
         <Route path="/searchCard">
-          <SearchCard />
+            <Suspense fallback={<div></div>}>
+                <SearchCard />
+            </Suspense>
         </Route>
       </Switch>
     </div>

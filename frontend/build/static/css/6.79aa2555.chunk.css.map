@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/styles/DropdownLiveSearch.css"],"names":[],"mappings":"AAAA,mBACI,4CAA0C,CAA1C,oCACJ","file":"6.79aa2555.chunk.css","sourcesContent":[".dropdownTransform {\n    transform: translate(0px, 40px) !important;\n}"]}
