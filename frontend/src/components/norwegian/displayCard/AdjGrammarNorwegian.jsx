@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
-import { checkAdjProperties } from './utilsNorwegian.js';
-import "../../styles/CardTable.css";
+import { checkAdjProperties } from '../utilsNorwegian.js';
+import "../../../styles/CardTable.css";
 
 function AdjGrammarNorwegian({ grammarObj }) {
 

@@ -1,11 +1,9 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Dropdown from 'react-bootstrap/Dropdown';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import React from 'react';
 
 import AddCardAbstractForm from './AddCardAbstractForm.jsx';
@@ -15,56 +13,19 @@ function AddCard() {
 
     let langs = [{ lang: "Dutch", index: 1 }, { lang: "Norwegian", index: 2 }];
 
-    const [input, setInput] = useState("");
-    const [langSelected, setLangSelected] = useState("");
-    const [grammarSelected, setGrammarSelected] = useState("");
+    const selectLang = useRef(null);
+    const selectSpeech = useRef(null);
 
-    const handleLangSelect = (indexSelected) => {
-        setLangSelected(langs[indexSelected - 1].lang);
+    const [currLang, setCurrLang] = useState("Dutch");
+    const [currSpeech, setCurrSpeech] = useState("Adjective");
+
+    const updateLang = () => {
+        setCurrLang(selectLang.current.value);
     }
 
-    const handleGrammarSelect = (grammar) => {
-        setGrammarSelected(grammar);
+    const updateSpeech = () => {
+        setCurrSpeech(selectSpeech.current.value);
     }
-
-    if (input.length > 0) {
-        langs = langs.filter((lang) => {
-            return lang.lang.match(input);
-        })
-    }
-
-    let options;
-    if (langs.length === 0) {
-        options = <Dropdown.Item disabled>No matches</Dropdown.Item>;
-    } else {
-        options = langs.map((lang) => <Dropdown.Item key={lang.index} onClick={() => handleLangSelect(lang.index)} eventKey={lang.index}>{lang.lang}</Dropdown.Item>);
-    }
-
-    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-        <Button href="" ref={ref} onClick={(e) => { e.preventDefault(); onClick(e); }}>
-            {children}
-            &#x25bc;
-        </Button>
-    ));
-
-    const CustomMenu = React.forwardRef(
-        ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
-
-            return (
-                <div ref={ref} style={style} className={className} aria-labelledby={labeledBy}>
-                    <FormControl
-                        autoFocus
-                        className="mx-3 my-2 w-auto"
-                        placeholder="Search..."
-                        onChange={(e) => setInput(e.target.value)}
-                        value={input} />
-                    <ul className="list-unstyled">
-                        {children}
-                    </ul>
-                </div>
-            );
-        },
-    );
 
     return (
         <Container fluid>
@@ -72,34 +33,34 @@ function AddCard() {
                 <Col>
                 </Col>
                 <Col xs={10}>
-                    <InputGroup>
-                        <Dropdown>
-                            <Dropdown.Toggle as={CustomToggle} id="dropdownLanguageToggle">
-                                {langSelected === '' ? "Select language" : langSelected}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="dropdownTransform" as={CustomMenu}>
-                                {options}
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </InputGroup>
-                    <InputGroup>
-                        <Dropdown>
-                            <Dropdown.Toggle>
-                                {grammarSelected === '' ? "Part of speech" : grammarSelected}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => handleGrammarSelect("Adjective")}>Adjective</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handleGrammarSelect("Noun")}>Noun</Dropdown.Item>
-                                <Dropdown.Item onClick={() => handleGrammarSelect("Verb")}>Verb</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                    <InputGroup className="mt-2">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>Language:</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control className="langDropdown" onChange={() => updateLang()} ref={selectLang} as="select" defaultValue="Dutch">
+                            {langs.map((lang) => <option key={lang.index}>{lang.lang}</option>)}
+                        </Form.Control>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>Part of speech:</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control className="langDropdown" onChange={() => updateSpeech()} ref={selectSpeech} as="select" defaultValue="Adjective">
+                            <option>Adjective</option>
+                            <option>Noun</option>
+                            <option>Verb</option>
+                        </Form.Control>
                     </InputGroup>
                 </Col>
                 <Col>
                 </Col>
             </Row>
             <Row>
-                <AddCardAbstractForm langSelected={langSelected} grammarSelected={grammarSelected}/>
+                <Col>
+                </Col>
+                <Col xs={10} className="mt-2">
+                    <AddCardAbstractForm langSelected={currLang} grammarSelected={currSpeech}/>
+                </Col>
+                <Col>
+                </Col>
             </Row>
         </Container >
     )

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
 import Card from 'react-bootstrap/Card';
-import AdjGrammarNorwegian from './AdjGrammarNorwegian';
-import NounGrammarNorwegian from './NounGrammarNorwegian';
-import VerbGrammarNorwegian from './VerbGrammarNorwegian';
+import AdjGrammarNorwegian from './displayCard/AdjGrammarNorwegian';
+import NounGrammarNorwegian from './displayCard/NounGrammarNorwegian';
+import VerbGrammarNorwegian from './displayCard/VerbGrammarNorwegian';
 
-import SmAdjGrammarNorwegian from './small/SmAdjGrammarNorwegian.jsx';
-import SmNounGrammarNorwegian from './small/SmNounGrammarNorwegian';
-import SmVerbGrammarNorwegian from './small/SmVerbGrammarNorwegian';
+import SmAdjGrammarNorwegian from './smallDisplayCard/SmAdjGrammarNorwegian.jsx';
+import SmNounGrammarNorwegian from './smallDisplayCard/SmNounGrammarNorwegian';
+import SmVerbGrammarNorwegian from './smallDisplayCard/SmVerbGrammarNorwegian';
 
 import '../../styles/Card.css';
 

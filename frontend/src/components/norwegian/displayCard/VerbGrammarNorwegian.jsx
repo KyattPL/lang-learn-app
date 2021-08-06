@@ -1,5 +1,6 @@
 import Table from 'react-bootstrap/Table';
-import { checkVerbProperties } from './utilsNorwegian.js';
+import { checkVerbProperties } from '../utilsNorwegian.js';
+import "../../../styles/CardTable.css";
 
 function VerbGrammarNorwegian({ grammarObj }) {
 

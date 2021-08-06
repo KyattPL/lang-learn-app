@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
-import { checkNounProperties } from './utilsNorwegian.js';
-import "../../styles/CardTable.css";
+import { checkNounProperties } from '../utilsNorwegian.js';
+import "../../../styles/CardTable.css";
 
 function NounGrammarNorwegian({ grammarObj }) {
 

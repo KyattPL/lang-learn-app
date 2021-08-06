@@ -1,5 +1,5 @@
-import NorwegianCard from "./norwegian/NorwegianCard";
-import DutchCard from "./dutch/DutchCard";
+import NorwegianCard from "./norwegian/NorwegianCard.jsx";
+import DutchCard from "./dutch/DutchCard.jsx";
 
 function Flashcard({ cardLang, cardObj, numOfTranslation }) {
 
