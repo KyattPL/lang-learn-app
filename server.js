@@ -33,6 +33,10 @@ app.post('/addCard', (req, res) => {
     });
 });
 
+app.patch('/addCard', (req, res) => {
+    console.log("test");
+});
+
 app.post('/getCard', (req, res) => {
     const { lang, word } = req.body;
     const CardModel = cardUtils.getLanguageCard(lang);

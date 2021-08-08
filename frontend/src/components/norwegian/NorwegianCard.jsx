@@ -13,10 +13,12 @@ import '../../styles/Card.css';
 
 function checkProperties(cardObj, numOfTranslation) {
     let result = false;
-    if ('word' in cardObj && 'pronounciation' in cardObj && 'translation' in cardObj) {
+    if ('word' in cardObj && 'translation' in cardObj) {
         let trObj = cardObj.translation[numOfTranslation];
         if ('grammarAdj' in trObj || 'grammarNoun' in trObj || 'grammarVerb' in trObj) {
-            result = true;
+            if ('pronounciation' in trObj) {
+                result = true;
+            }
         }
     }
     return result;
@@ -65,7 +67,7 @@ function NorwegianCard({ cardObj, numOfTranslation }) {
         <Card>
             <Card.Body>
                 <Card.Title>{cardObj.word}</Card.Title>
-                <Card.Subtitle className="mb-2">{cardObj.pronounciation}</Card.Subtitle>
+                <Card.Subtitle className="mb-2">{singleTranslation.pronounciation}</Card.Subtitle>
                 <Card.Subtitle className="mb-2 text-muted">{singleTranslation.type} {gender}</Card.Subtitle>
                 <Card.Text>
                     {singleTranslation.meaning}

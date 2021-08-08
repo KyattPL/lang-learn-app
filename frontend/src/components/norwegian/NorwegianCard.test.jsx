@@ -11,10 +11,10 @@ afterEach(() => {
 test('render NorwegianCard for a noun', () => {
     const testObj = {
         "word": "hund",
-        "pronounciation": "ˈhʉn",
         "translation": [
             {
                 "type": "noun",
+                "pronounciation": "ˈhʉn",
                 "meaning": "Pies - normalny tak o zwierzak",
                 "grammarNoun": {
                     "countable": "true",
@@ -35,10 +35,10 @@ test('render NorwegianCard for a noun', () => {
 test('render NorwegianCard for an adjective', () => {
     const testObj = {
         "word": "ikke",
-        "pronounciation": "ike",
         "translation": [
             {
                 "type": "adjective",
+                "pronounciation": "ike",
                 "meaning": "Test stuff",
                 "grammarAdj": {
                     "masculineSinIndef": "ikke",
@@ -67,10 +67,10 @@ test('render NorwegianCard for an adjective', () => {
 test('render NorwegianCard for a verb', () => {
     const testObj = {
         "word": "faef",
-        "pronounciation": "fefae",
         "translation": [
             {
                 "type": "verb",
+                "pronounciation": "fefae",
                 "meaning": "Test stuff",
                 "grammarVerb": {
                     "infinitive": "faef",
@@ -97,10 +97,10 @@ test('render NorwegianCard for a noun on a small screen', () => {
 
     const testObj = {
         "word": "hund",
-        "pronounciation": "ˈhʉn",
         "translation": [
             {
                 "type": "noun",
+                "pronounciation": "ˈhʉn",
                 "meaning": "Pies - normalny tak o zwierzak",
                 "grammarNoun": {
                     "countable": "true",
@@ -124,10 +124,10 @@ test('render NorwegianCard for an adjective on a small screen', () => {
 
     const testObj = {
         "word": "ikke",
-        "pronounciation": "ike",
         "translation": [
             {
                 "type": "adjective",
+                "pronounciation": "ike",
                 "meaning": "Test stuff",
                 "grammarAdj": {
                     "masculineSinIndef": "ikke",
@@ -159,11 +159,11 @@ test('render NorwegianCard for a verb on a small screen', () => {
 
     const testObj = {
         "word": "faef",
-        "pronounciation": "fefae",
         "translation": [
             {
                 "type": "verb",
                 "meaning": "Test stuff",
+                "pronounciation": "fefae",
                 "grammarVerb": {
                     "infinitive": "faef",
                     "present": "aefaf",
@@ -206,11 +206,11 @@ test('fail NorwegianCard render on wrong card obj structure', () => {
 test('fail NorwegianCard render on wrong card obj translation structure', () => {
     const testObj = {
         "word": "faef",
-        "pronounciation": "fefae",
         "translation": [
             {
                 "type": "verb",
                 "meaning": "Test stuff",
+                "pronounciation": "fefae",
                 "grammarYikes": {
                     "infinitive": "faef",
                     "conditionalPerfect": "fff"
@@ -228,11 +228,11 @@ test('fail NorwegianCard render on wrong card obj translation structure on a sma
     global.innerWidth = 500;
     const testObj = {
         "word": "faef",
-        "pronounciation": "fefae",
         "translation": [
             {
                 "type": "verb",
                 "meaning": "Test stuff",
+                "pronounciation": "fefae",
                 "grammarYikes": {
                     "infinitive": "faef",
                     "conditionalPerfect": "fff"
@@ -249,10 +249,10 @@ test('fail NorwegianCard render on wrong card obj translation structure on a sma
 test('resize NorwegianCard', () => {
     const testObj = {
         "word": "faef",
-        "pronounciation": "fefae",
         "translation": [
             {
                 "type": "verb",
+                "pronounciation": "fefae",
                 "meaning": "Test stuff",
                 "grammarVerb": {
                     "infinitive": "faef",

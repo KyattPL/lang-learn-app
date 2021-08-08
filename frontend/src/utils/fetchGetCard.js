@@ -5,5 +5,5 @@ export const fetchGetCard = (lang, word) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ lang: lang, word: word })
-    }).then(response => response.text())
-}
+    }).then(response => response.text());
+};

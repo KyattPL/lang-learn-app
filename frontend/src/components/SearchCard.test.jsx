@@ -14,9 +14,9 @@ test("render SearchCard and test card finding for valid form", async () => {
 
     fetchGetCard.mockResolvedValue(`{
             "word": "hund",
-            "pronounciation": "ˈhʉn",
             "translation": [
                 {
+                    "pronounciation": "ˈhʉn",
                     "type": "noun",
                     "meaning": "Pies - normalny tak o zwierzak",
                     "grammarNoun": {
