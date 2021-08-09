@@ -24,17 +24,41 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/addCard', (req, res) => {
-    const { lang, word, pronounciation, translation } = req.body;
+    const { lang, cardObj } = req.body;
     const CardModel = cardUtils.getLanguageCard(lang);
-    const newCard = new CardModel({ word, pronounciation, translation });
-    newCard.save((err) => {
-        if (err) return res.sendStatus(500);
-        else return res.sendStatus(200);
-    });
-});
-
-app.patch('/addCard', (req, res) => {
-    console.log("test");
+    if (CardModel) {
+        if (cardObj) {
+            const { word, translation } = cardObj;
+            CardModel.findOne({ word: word }, (err, doc) => {
+                if (err) {
+                    console.log(err);
+                    res.send("DB_ERR");
+                } else if (doc === null) {
+                    let card = new CardModel({ word, translation });
+                    card.save((err) => {
+                        if (err) return res.sendStatus(500);
+                        else return res.sendStatus(200);
+                    });
+                } else {
+                    console.log(doc);
+                    let test = [43];
+                    doc.translation.push(translation[0]);
+                    doc.save().then(() => {
+                        return res.sendStatus(200);
+                    }).catch((err) => {
+                        console.error("Error: ", err);
+                        return res.sendStatus(500);
+                    });
+                }
+            });
+        } else {
+            console.log("no word");
+            res.send("MISSING_WORD_PASSED");
+        }
+    } else {
+        console.log("no lang");
+        res.send("MISSING_LANG_PASSED");
+    }
 });
 
 app.post('/getCard', (req, res) => {

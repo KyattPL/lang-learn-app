@@ -42,6 +42,7 @@ const verbSchema = new mongoose.Schema({
 
 const translationSchema = new mongoose.Schema({
     type: String,
+    pronounciation: String,
     meaning: String,
     grammarNoun: {
         type: nounSchema,
@@ -59,7 +60,6 @@ const translationSchema = new mongoose.Schema({
 
 const norwegianSchema = new mongoose.Schema({
     word: String,
-    pronounciation: String,
     translation: [translationSchema]
 });
 
