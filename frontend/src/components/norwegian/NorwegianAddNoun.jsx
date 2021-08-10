@@ -84,7 +84,7 @@ function NorwegianAddNoun() {
                     Countable
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control onClick={() => setCheckedCountable(!checkedCountable)} style={{width: "auto"}} type="checkbox" />
+                    <Form.Control onClick={() => setCheckedCountable(!checkedCountable)} style={{ width: "auto" }} type="checkbox" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -139,7 +139,7 @@ function NorwegianAddNoun() {
                     <Form.Control ref={plIndefInput} className="dontValidate" type="text" placeholder="Type here" />
                 </Col>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
                 Add Card
             </Button>
         </Form>

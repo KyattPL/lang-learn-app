@@ -40,8 +40,6 @@ app.post('/addCard', (req, res) => {
                         else return res.sendStatus(200);
                     });
                 } else {
-                    console.log(doc);
-                    let test = [43];
                     doc.translation.push(translation[0]);
                     doc.save().then(() => {
                         return res.sendStatus(200);
