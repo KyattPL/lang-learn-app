@@ -7,6 +7,7 @@ import { useRef, useState } from 'react';
 import React from 'react';
 
 import AddCardAbstractForm from './AddCardAbstractForm.jsx';
+import AddCardModal from './AddCardModal.jsx';
 import '../styles/DropdownLiveSearch.css';
 
 function AddCard() {
@@ -18,6 +19,8 @@ function AddCard() {
 
     const [currLang, setCurrLang] = useState("Dutch");
     const [currSpeech, setCurrSpeech] = useState("Adjective");
+    const [currWord, setCurrWord] = useState(null);
+    const [shouldShowModal, setShouldShowModal] = useState(false);
 
     const updateLang = () => {
         setCurrLang(selectLang.current.value);
@@ -57,11 +60,12 @@ function AddCard() {
                 <Col>
                 </Col>
                 <Col xs={10} className="mt-2">
-                    <AddCardAbstractForm langSelected={currLang} grammarSelected={currSpeech}/>
+                    <AddCardAbstractForm wordSetter={setCurrWord} langSelected={currLang} grammarSelected={currSpeech}/>
                 </Col>
                 <Col>
                 </Col>
             </Row>
+            <AddCardModal show={shouldShowModal} addedWord={currWord} handleClose={() => setShouldShowModal(false)}/>
         </Container >
     )
 }
