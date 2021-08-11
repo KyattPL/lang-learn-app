@@ -105,7 +105,7 @@ function SearchCard() {
                 <Col>
                 </Col>
             </Row>
-            <SearchCardModal show={shouldShowModal} noWord={noWord} handleClose={handleClose}/>
+            <SearchCardModal show={shouldShowModal} noWord={noWord} handleClose={handleClose} />
         </Container>
     )
 }

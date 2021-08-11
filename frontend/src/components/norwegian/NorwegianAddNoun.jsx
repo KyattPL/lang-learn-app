@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import '../../styles/AddCard.css';
 import { useState, useRef } from 'react';
 import { fetchAddCard } from '../../utils/fetchAddCard';
+import { dashOnEmptyInput } from '../../utils/dashOnEmptyInput';
 
 function NorwegianAddNoun() {
 
@@ -37,10 +38,10 @@ function NorwegianAddNoun() {
                         "grammarNoun": {
                             "countable": checkedCountable,
                             "gender": genderInput.current.value,
-                            "singularIndefinite": sinIndefInput.current.value === null ? sinIndefInput.current.value : '-',
-                            "singularDefinite": sinDefInput.current.value === null ? sinDefInput.current.value : '-',
-                            "pluralIndefinite": plIndefInput.current.value === null ? plIndefInput.current.value : '-',
-                            "pluralDefinite": plDefInput.current.value === null ? plDefInput.current.value : '-',
+                            "singularIndefinite": dashOnEmptyInput(sinIndefInput),
+                            "singularDefinite": dashOnEmptyInput(sinDefInput),
+                            "pluralIndefinite": dashOnEmptyInput(plIndefInput),
+                            "pluralDefinite": dashOnEmptyInput(plDefInput)
                         }
                     }
                 ]
