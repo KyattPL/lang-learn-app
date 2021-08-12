@@ -53,6 +53,7 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                 } else if (data === "MISSING_WORD_PASSED") {
                     console.log("missing word");
                 } else {
+                    clearForm();
                     showModal();
                     console.log("OK!")
                 }
@@ -63,6 +64,16 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
             setValidated(true);
         }
     };
+
+    const clearForm = () => {
+        wordInput.current.value = '';
+        pronInput.current.value = '';
+        meanInput.current.value = '';
+        sinDefInput.current.value = '';
+        sinIndefInput.current.value = '';
+        plDefInput.current.value = '';
+        plIndefInput.current.value = '';
+    }
 
     return (
         <Form onSubmit={addCard} noValidate validated={validated}>

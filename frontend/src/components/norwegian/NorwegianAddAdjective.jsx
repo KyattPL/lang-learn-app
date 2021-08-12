@@ -46,7 +46,7 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                 "word": wordInput.current.value,
                 "translation": [
                     {
-                        "type": "noun",
+                        "type": "adjective",
                         "pronounciation": pronInput.current.value,
                         "meaning": meanInput.current.value,
                         "grammarAdj": {
@@ -75,6 +75,7 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                 } else if (data === "MISSING_WORD_PASSED") {
                     console.log("missing word");
                 } else {
+                    clearForm();
                     showModal();
                     console.log("OK!");
                 }
@@ -85,6 +86,27 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
             setValidated(true);
         }
     };
+
+    const clearForm = () => {
+        wordInput.current.value = '';
+        pronInput.current.value = '';
+        meanInput.current.value = '';
+        mascSinDefInput.current.value = '';
+        mascSinIndefInput.current.value = '';
+        mascPlDefInput.current.value = '';
+        mascPlIndefInput.current.value = '';
+        femSinDefInput.current.value = '';
+        femSinIndefInput.current.value = '';
+        femPlDefInput.current.value = '';
+        femPlIndefInput.current.value = '';
+        neuterSinDefInput.current.value = '';
+        neuterSinIndefInput.current.value = '';
+        neuterPlDefInput.current.value = '';
+        neuterPlIndefInput.current.value = '';
+        comparativeInput.current.value = '';
+        indefSuperlativeInput.current.value = '';
+        defSuperlativeInput.current.value = '';
+    }
 
     return (
         <Form onSubmit={addCard} noValidate validated={validated}>
