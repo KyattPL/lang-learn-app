@@ -38,7 +38,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                 "word": wordInput.current.value,
                 "translation": [
                     {
-                        "type": "noun",
+                        "type": "verb",
                         "pronounciation": pronInput.current.value,
                         "meaning": meanInput.current.value,
                         "grammarVerb": {
@@ -62,6 +62,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                 } else if (data === "MISSING_WORD_PASSED") {
                     console.log("missing word");
                 } else {
+                    clearForm();
                     showModal();
                     console.log("OK!");
                 }
@@ -72,6 +73,22 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
             setValidated(true);
         }
     };
+
+    const clearForm = () => {
+        wordInput.current.value = '';
+        pronInput.current.value = '';
+        meanInput.current.value = '';
+        infinitiveInput.current.value = '';
+        presentInput.current.value = '';
+        pastInput.current.value = '';
+        futureInput.current.value = '';
+        condInput.current.value = '';
+        imperInput.current.value = '';
+        presPerfInput.current.value = '';
+        pastPerfInput.current.value = '';
+        futurePerfInput.current.value = '';
+        pastPerfInput.current.value = '';
+    }
 
     return (
         <Form onSubmit={addCard} noValidate validated={validated}>
