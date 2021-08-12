@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import Card from 'react-bootstrap/Card';
+
+import DeleteCardModal from '../DeleteCardModal';
+
 import AdjGrammarNorwegian from './displayCard/AdjGrammarNorwegian';
 import NounGrammarNorwegian from './displayCard/NounGrammarNorwegian';
 import VerbGrammarNorwegian from './displayCard/VerbGrammarNorwegian';
@@ -65,6 +68,9 @@ function NorwegianCard({ cardObj, numOfTranslation }) {
 
     return (
         <Card>
+            <Card.Header>
+                <DeleteCardModal cardLang="Norwegian" cardId={cardObj._id} translationId={singleTranslation._id} />
+            </Card.Header>
             <Card.Body>
                 <Card.Title>{cardObj.word}</Card.Title>
                 <Card.Subtitle className="mb-2">{singleTranslation.pronounciation}</Card.Subtitle>

@@ -59,6 +59,32 @@ app.post('/addCard', (req, res) => {
     }
 });
 
+app.post('/deleteCard', (req, res) => {
+    const { password, lang, id, translationId } = req.body;
+    if (password === process.env.DELETE_CARD_PASS) {
+        const CardModel = cardUtils.getLanguageCard(lang);
+        if (CardModel) {
+            CardModel.findOneAndUpdate({ _id: id, "translation._id": translationId }, {
+                $pull: {
+                    translation: {
+                        _id: translationId
+                    }
+                }
+            }, (err) => {
+                if (err) {
+                    console.error("Error: ", err);
+                } else {
+                    res.sendStatus(200);
+                }
+            });
+        } else {
+            res.send("MISSING_LANG_PASSED");
+        }
+    } else {
+        res.sendStatus(403);
+    }
+});
+
 app.post('/getCard', (req, res) => {
     const { lang, word } = req.body;
     const CardModel = cardUtils.getLanguageCard(lang);
@@ -81,6 +107,24 @@ app.post('/getCard', (req, res) => {
         res.send("MISSING_LANG_PASSED");
     }
 });
+
+app.post('/checkDeletePassword', (req, res) => {
+    const { password } = req.body;
+    if (password === process.env.DELETE_CARD_PASS) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+app.post('/checkAddPassword', (req, res) => {
+    const { password } = req.body;
+    if (password === process.env.ADD_CARD_PASS) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(403);
+    }
+})
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
