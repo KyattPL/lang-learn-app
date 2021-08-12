@@ -30,6 +30,10 @@ function AddCard() {
         setCurrSpeech(selectSpeech.current.value);
     }
 
+    const showModal = () => {
+        setShouldShowModal(true);
+    }
+
     return (
         <Container fluid>
             <Row>
@@ -60,7 +64,7 @@ function AddCard() {
                 <Col>
                 </Col>
                 <Col xs={10} className="mt-2">
-                    <AddCardAbstractForm wordSetter={setCurrWord} langSelected={currLang} grammarSelected={currSpeech}/>
+                    <AddCardAbstractForm showModal={showModal} wordSetter={setCurrWord} langSelected={currLang} grammarSelected={currSpeech}/>
                 </Col>
                 <Col>
                 </Col>
