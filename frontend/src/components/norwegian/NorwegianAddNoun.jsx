@@ -8,7 +8,7 @@ import { useState, useRef } from 'react';
 import { fetchAddCard } from '../../utils/fetchAddCard';
 import { dashOnEmptyInput } from '../../utils/dashOnEmptyInput';
 
-function NorwegianAddNoun() {
+function NorwegianAddNoun({ wordSetter, showModal }) {
 
     const [validated, setValidated] = useState(false);
     const [checkedCountable, setCheckedCountable] = useState(false);
@@ -28,6 +28,7 @@ function NorwegianAddNoun() {
 
         if (event.currentTarget.checkValidity() === true) {
             setValidated(false);
+            wordSetter(wordInput.current.value);
             const cardObj = {
                 "word": wordInput.current.value,
                 "translation": [
@@ -52,6 +53,7 @@ function NorwegianAddNoun() {
                 } else if (data === "MISSING_WORD_PASSED") {
                     console.log("missing word");
                 } else {
+                    showModal();
                     console.log("OK!")
                 }
             }).catch((error) => {
