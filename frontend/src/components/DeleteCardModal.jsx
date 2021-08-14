@@ -34,7 +34,11 @@ function DeleteCardModal({ cardLang, cardId, translationId }) {
             } else {
                 passInpObj.setCustomValidity("");
                 fetchDeleteCard(password, cardLang, cardId, translationId).then(res => {
-                    window.location.reload();
+                    if (res === "MISSING_LANG_PASSED" || res === "Forbidden") {
+                        console.error(res);
+                    } else {
+                        window.location.reload();
+                    }
                 }).catch(err => {
                     console.error("Error: ", err);
                 });

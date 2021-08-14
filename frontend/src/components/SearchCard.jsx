@@ -43,10 +43,8 @@ function SearchCard() {
             setValidated(false);
             fetchGetCard(selectInput.current.value, wordInput.current.value)
                 .then(data => {
-                    if (data === "DB_ERR") {
-                        console.log("Oops, something went wrong!");
-                    } else if (data === "MISSING_WORD_PASSED") {
-                        console.log("Somehow your word wasn't passed to the backend");
+                    if (data === "DB_ERR" || data === "MISSING_WORD_PASSED" || data === "MISSING_LANG_PASSED") {
+                        console.error(data);
                     } else {
                         if (data === '') {
                             showModal(wordInput.current.value);
