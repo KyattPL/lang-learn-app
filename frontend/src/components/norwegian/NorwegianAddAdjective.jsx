@@ -70,14 +70,13 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                 ]
             }
             fetchAddCard("Norwegian", cardObj).then(data => {
-                if (data === "DB_ERR") {
-                    console.log("db err");
-                } else if (data === "MISSING_WORD_PASSED") {
-                    console.log("missing word");
-                } else {
+                if (data === "DB_ERR" || data === "MISSING_LANG_PASSED" || data === "MISSING_WORD_PASSED") {
+                    console.error(data);
+                } else if (data === "Internal Server Error") {
+                    console.error("There was a problem with saving your card to the database");
+                } else  {
                     clearForm();
                     showModal();
-                    console.log("OK!");
                 }
             }).catch((error) => {
                 console.error("Error: ", error);
