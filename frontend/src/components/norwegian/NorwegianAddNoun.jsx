@@ -4,23 +4,32 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import '../../styles/AddCard.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, createRef, useEffect } from 'react';
 import { fetchAddCard } from '../../utils/fetchAddCard';
 import { dashOnEmptyInput } from '../../utils/dashOnEmptyInput';
 
 function NorwegianAddNoun({ wordSetter, showModal }) {
+
+    const grammarInputNames = ["Singular Indefinite", "Singular Definite",
+        "Plural Indefinite", "Plural Definite"];
+
+    const grammarInputLen = grammarInputNames.length;
 
     const [validated, setValidated] = useState(false);
     const [checkedCountable, setCheckedCountable] = useState(false);
 
     const wordInput = useRef(null);
     const pronInput = useRef(null);
-    const genderInput = useRef(null);
     const meanInput = useRef(null);
-    const sinDefInput = useRef(null);
-    const sinIndefInput = useRef(null);
-    const plDefInput = useRef(null);
-    const plIndefInput = useRef(null);
+    const genderInput = useRef(null);
+
+    const [elRefs, setElRefs] = useState([]);
+
+    useEffect(() => {
+        setElRefs(elRefs => (
+          Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
+        ));
+      }, [grammarInputLen]);
 
     const addCard = (event) => {
         event.preventDefault();
@@ -39,10 +48,10 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                         "grammarNoun": {
                             "countable": checkedCountable,
                             "gender": genderInput.current.value,
-                            "singularIndefinite": dashOnEmptyInput(sinIndefInput),
-                            "singularDefinite": dashOnEmptyInput(sinDefInput),
-                            "pluralIndefinite": dashOnEmptyInput(plIndefInput),
-                            "pluralDefinite": dashOnEmptyInput(plDefInput)
+                            "singularIndefinite": dashOnEmptyInput(elRefs[1]),
+                            "singularDefinite": dashOnEmptyInput(elRefs[2]),
+                            "pluralIndefinite": dashOnEmptyInput(elRefs[3]),
+                            "pluralDefinite": dashOnEmptyInput(elRefs[4])
                         }
                     }
                 ]
@@ -67,13 +76,9 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
     };
 
     const clearForm = () => {
-        wordInput.current.value = '';
-        pronInput.current.value = '';
-        meanInput.current.value = '';
-        sinDefInput.current.value = '';
-        sinIndefInput.current.value = '';
-        plDefInput.current.value = '';
-        plIndefInput.current.value = '';
+        for (let i=0; i < grammarInputLen; i++) {
+            elRefs[i].current.value = '';
+        }
     }
 
     return (
@@ -96,6 +101,14 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
                 <Form.Label column sm="2">
+                    Meaning
+                </Form.Label>
+                <Col sm={10}>
+                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-2">
+                <Form.Label column sm="2">
                     Countable
                 </Form.Label>
                 <Col sm={10}>
@@ -114,46 +127,17 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                     </Form.Control>
                 </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Meaning
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Singular Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={sinDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Singular Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={sinIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Plural Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={plDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Plural Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={plIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
+            {
+                grammarInputNames.map((name, index) =>
+                    <Form.Group key={name} as={Row} className="mb-2">
+                        <Form.Label column sm="2">
+                            {name}
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control ref={elRefs[index]} className="dontValidate" type="text" placeholder="Type here" />
+                        </Col>
+                    </Form.Group>)
+            }
             <Button variant="success" type="submit">
                 Add Card
             </Button>
