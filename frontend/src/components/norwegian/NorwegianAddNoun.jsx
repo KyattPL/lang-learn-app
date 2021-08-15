@@ -27,9 +27,9 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
 
     useEffect(() => {
         setElRefs(elRefs => (
-          Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
+            Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
         ));
-      }, [grammarInputLen]);
+    }, [grammarInputLen]);
 
     const addCard = (event) => {
         event.preventDefault();
@@ -48,10 +48,10 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                         "grammarNoun": {
                             "countable": checkedCountable,
                             "gender": genderInput.current.value,
-                            "singularIndefinite": dashOnEmptyInput(elRefs[1]),
-                            "singularDefinite": dashOnEmptyInput(elRefs[2]),
-                            "pluralIndefinite": dashOnEmptyInput(elRefs[3]),
-                            "pluralDefinite": dashOnEmptyInput(elRefs[4])
+                            "singularIndefinite": dashOnEmptyInput(elRefs[0]),
+                            "singularDefinite": dashOnEmptyInput(elRefs[1]),
+                            "pluralIndefinite": dashOnEmptyInput(elRefs[2]),
+                            "pluralDefinite": dashOnEmptyInput(elRefs[3])
                         }
                     }
                 ]
@@ -63,7 +63,7 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                     console.error("There was a problem with saving your card to the database");
                 } else if (data.startsWith("Proxy error:")) {
                     console.error(data);
-                } else  {
+                } else {
                     clearForm();
                     showModal();
                 }
@@ -76,7 +76,7 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
     };
 
     const clearForm = () => {
-        for (let i=0; i < grammarInputLen; i++) {
+        for (let i = 0; i < grammarInputLen; i++) {
             elRefs[i].current.value = '';
         }
     }
