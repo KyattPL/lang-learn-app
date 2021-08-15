@@ -74,6 +74,8 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                     console.error(data);
                 } else if (data === "Internal Server Error") {
                     console.error("There was a problem with saving your card to the database");
+                } else if (data.startsWith("Proxy error:")){
+                    console.error(data);
                 } else  {
                     clearForm();
                     showModal();

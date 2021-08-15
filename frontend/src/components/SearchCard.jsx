@@ -48,6 +48,8 @@ function SearchCard() {
                     } else {
                         if (data === '') {
                             showModal(wordInput.current.value);
+                        } else if (data.startsWith("Proxy error:")) {
+                            console.error(data);
                         } else {
                             setCardInfo(JSON.parse(data));
                             setCardLang(selectInput.current.value);
