@@ -4,36 +4,32 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import '../../styles/AddCard.css';
-import { useState, useRef } from 'react';
+import { useState, createRef, useRef, useEffect } from 'react';
 import { fetchAddCard } from '../../utils/fetchAddCard';
 import { dashOnEmptyInput } from '../../utils/dashOnEmptyInput';
 
 function NorwegianAddAdjective({ wordSetter, showModal }) {
 
+    const grammarInputNames = ["Masculine Singular Indefinite", "Masculine Singular Definite",
+        "Masculine Plural Indefinite", "Masculine Plural Definite", "Feminine Singular Indefinite",
+        "Feminine Singular Definite", "Feminine Plural Indefinite", "Feminine Plural Definite",
+        "Neuter Singular Indefinite", "Neuter Singular Definite", "Neuter Plural Indefinite",
+        "Neuter Plural Definite", "Comparative", "Indefinite Superlative", "Definite Superlative"];
+
+    const grammarInputLen = grammarInputNames.length;
     const [validated, setValidated] = useState(false);
 
     const wordInput = useRef(null);
     const pronInput = useRef(null);
     const meanInput = useRef(null);
 
-    const mascSinIndefInput = useRef(null);
-    const mascSinDefInput = useRef(null);
-    const mascPlIndefInput = useRef(null);
-    const mascPlDefInput = useRef(null);
+    const [elRefs, setElRefs] = useState([]);
 
-    const femSinIndefInput = useRef(null);
-    const femSinDefInput = useRef(null);
-    const femPlIndefInput = useRef(null);
-    const femPlDefInput = useRef(null);
-
-    const neuterSinIndefInput = useRef(null);
-    const neuterSinDefInput = useRef(null);
-    const neuterPlIndefInput = useRef(null);
-    const neuterPlDefInput = useRef(null);
-
-    const comparativeInput = useRef(null);
-    const indefSuperlativeInput = useRef(null);
-    const defSuperlativeInput = useRef(null);
+    useEffect(() => {
+      setElRefs(elRefs => (
+        Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
+      ));
+    }, [grammarInputLen]);
 
     const addCard = (event) => {
         event.preventDefault();
@@ -50,21 +46,21 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                         "pronounciation": pronInput.current.value,
                         "meaning": meanInput.current.value,
                         "grammarAdj": {
-                            "masculineSinIndef": dashOnEmptyInput(mascSinIndefInput),
-                            "masculineSinDef": dashOnEmptyInput(mascSinDefInput),
-                            "masculinePlIndef": dashOnEmptyInput(mascPlIndefInput),
-                            "masculinePlDef": dashOnEmptyInput(mascPlDefInput),
-                            "feminineSinIndef": dashOnEmptyInput(femSinIndefInput),
-                            "feminineSinDef": dashOnEmptyInput(femSinDefInput),
-                            "femininePlIndef": dashOnEmptyInput(femPlIndefInput),
-                            "femininePlDef": dashOnEmptyInput(femPlDefInput),
-                            "neuterSinIndef": dashOnEmptyInput(neuterSinIndefInput),
-                            "neuterSinDef": dashOnEmptyInput(neuterSinDefInput),
-                            "neuterPlIndef": dashOnEmptyInput(neuterPlIndefInput),
-                            "neuterPlDef": dashOnEmptyInput(neuterPlDefInput),
-                            "comparative": dashOnEmptyInput(comparativeInput),
-                            "indefSuperlative": dashOnEmptyInput(indefSuperlativeInput),
-                            "defSuperlative": dashOnEmptyInput(defSuperlativeInput)
+                            "masculineSinIndef": dashOnEmptyInput(elRefs[0]),
+                            "masculineSinDef": dashOnEmptyInput(elRefs[1]),
+                            "masculinePlIndef": dashOnEmptyInput(elRefs[2]),
+                            "masculinePlDef": dashOnEmptyInput(elRefs[3]),
+                            "feminineSinIndef": dashOnEmptyInput(elRefs[4]),
+                            "feminineSinDef": dashOnEmptyInput(elRefs[5]),
+                            "femininePlIndef": dashOnEmptyInput(elRefs[6]),
+                            "femininePlDef": dashOnEmptyInput(elRefs[7]),
+                            "neuterSinIndef": dashOnEmptyInput(elRefs[8]),
+                            "neuterSinDef": dashOnEmptyInput(elRefs[9]),
+                            "neuterPlIndef": dashOnEmptyInput(elRefs[10]),
+                            "neuterPlDef": dashOnEmptyInput(elRefs[11]),
+                            "comparative": dashOnEmptyInput(elRefs[12]),
+                            "indefSuperlative": dashOnEmptyInput(elRefs[13]),
+                            "defSuperlative": dashOnEmptyInput(elRefs[14])
                         }
                     }
                 ]
@@ -89,24 +85,9 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
     };
 
     const clearForm = () => {
-        wordInput.current.value = '';
-        pronInput.current.value = '';
-        meanInput.current.value = '';
-        mascSinDefInput.current.value = '';
-        mascSinIndefInput.current.value = '';
-        mascPlDefInput.current.value = '';
-        mascPlIndefInput.current.value = '';
-        femSinDefInput.current.value = '';
-        femSinIndefInput.current.value = '';
-        femPlDefInput.current.value = '';
-        femPlIndefInput.current.value = '';
-        neuterSinDefInput.current.value = '';
-        neuterSinIndefInput.current.value = '';
-        neuterPlDefInput.current.value = '';
-        neuterPlIndefInput.current.value = '';
-        comparativeInput.current.value = '';
-        indefSuperlativeInput.current.value = '';
-        defSuperlativeInput.current.value = '';
+        for (let i=0; i < grammarInputLen; i++) {
+            elRefs[i].current.value = '';
+        }
     }
 
     return (
@@ -135,126 +116,17 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                     <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
                 </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Masculine Singular Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={mascSinIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Masculine Singular Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={mascSinDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Masculine Plural Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={mascPlIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Masculine Plural Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={mascPlDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Feminine Singular Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={femSinIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Feminine Singular Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={femSinDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Feminine Plural Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={femPlIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Feminine Plural Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={femPlDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Neuter Singular Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={neuterSinIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Neuter Singular Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={neuterSinDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Neuter Plural Indefinite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={neuterPlIndefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Neuter Plural Definite
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={neuterPlDefInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Comparative
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={comparativeInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Indefinite Superlative
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={indefSuperlativeInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Definite Superlative
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={defSuperlativeInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
+            {
+                grammarInputNames.map((name, index) => 
+                    <Form.Group as={Row} className="mb-2" key={name}>
+                        <Form.Label column sm="2">
+                            {name}
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control ref={elRefs[index]} className="dontValidate" type="text" placeholder="Type here"/>
+                        </Col>
+                    </Form.Group>)
+            }
             <Button variant="success" type="submit">
                 Add Card
             </Button>

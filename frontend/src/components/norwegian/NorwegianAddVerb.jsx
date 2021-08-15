@@ -4,11 +4,16 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import '../../styles/AddCard.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, createRef, useEffect } from 'react';
 import { fetchAddCard } from '../../utils/fetchAddCard';
 import { dashOnEmptyInput } from '../../utils/dashOnEmptyInput';
 
 function NorwegianAddVerb({ wordSetter, showModal }) {
+
+    const grammarInputNames = ["Infinitive", "Present", "Past", "Future", "Conditional",
+        "Imperative", "Present Perfect", "Past Perfect", "Future Perfect", "Conditional Perfect"];
+
+    const grammarInputLen = grammarInputNames.length;
 
     const [validated, setValidated] = useState(false);
 
@@ -16,16 +21,13 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
     const pronInput = useRef(null);
     const meanInput = useRef(null);
 
-    const infinitiveInput = useRef(null);
-    const presentInput = useRef(null);
-    const pastInput = useRef(null);
-    const futureInput = useRef(null);
-    const condInput = useRef(null);
-    const imperInput = useRef(null);
-    const presPerfInput = useRef(null);
-    const pastPerfInput = useRef(null);
-    const futurePerfInput = useRef(null);
-    const condPerfInput = useRef(null);
+    const [elRefs, setElRefs] = useState([]);
+
+    useEffect(() => {
+        setElRefs(elRefs => (
+          Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
+        ));
+      }, [grammarInputLen]);
 
     const addCard = (event) => {
         event.preventDefault();
@@ -42,16 +44,16 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                         "pronounciation": pronInput.current.value,
                         "meaning": meanInput.current.value,
                         "grammarVerb": {
-                            "infinitive": dashOnEmptyInput(infinitiveInput),
-                            "present": dashOnEmptyInput(presentInput),
-                            "past": dashOnEmptyInput(pastInput),
-                            "future": dashOnEmptyInput(futureInput),
-                            "conditional": dashOnEmptyInput(condInput),
-                            "imperative": dashOnEmptyInput(imperInput),
-                            "presentPerfect": dashOnEmptyInput(presPerfInput),
-                            "pastPerfect": dashOnEmptyInput(pastPerfInput),
-                            "futurePerfect": dashOnEmptyInput(futurePerfInput),
-                            "conditionalPerfect": dashOnEmptyInput(condPerfInput)
+                            "infinitive": dashOnEmptyInput(elRefs[0]),
+                            "present": dashOnEmptyInput(elRefs[1]),
+                            "past": dashOnEmptyInput(elRefs[2]),
+                            "future": dashOnEmptyInput(elRefs[3]),
+                            "conditional": dashOnEmptyInput(elRefs[4]),
+                            "imperative": dashOnEmptyInput(elRefs[5]),
+                            "presentPerfect": dashOnEmptyInput(elRefs[6]),
+                            "pastPerfect": dashOnEmptyInput(elRefs[7]),
+                            "futurePerfect": dashOnEmptyInput(elRefs[8]),
+                            "conditionalPerfect": dashOnEmptyInput(elRefs[9])
                         }
                     }
                 ]
@@ -76,19 +78,9 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
     };
 
     const clearForm = () => {
-        wordInput.current.value = '';
-        pronInput.current.value = '';
-        meanInput.current.value = '';
-        infinitiveInput.current.value = '';
-        presentInput.current.value = '';
-        pastInput.current.value = '';
-        futureInput.current.value = '';
-        condInput.current.value = '';
-        imperInput.current.value = '';
-        presPerfInput.current.value = '';
-        pastPerfInput.current.value = '';
-        futurePerfInput.current.value = '';
-        pastPerfInput.current.value = '';
+        for (let i=0; i < grammarInputLen; i++) {
+            elRefs[i].current.value = '';
+        }
     }
 
     return (
@@ -117,86 +109,17 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                     <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
                 </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Infinitive
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={infinitiveInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Present
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={presentInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Past
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={pastInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Future
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={futureInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Conditional
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={condInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Imperative
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={imperInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Present Perfect
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={presPerfInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Past Perfect
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={pastPerfInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Future Perfect
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={futurePerfInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
-                    Conditional Perfect
-                </Form.Label>
-                <Col sm={10}>
-                    <Form.Control ref={condPerfInput} className="dontValidate" type="text" placeholder="Type here" />
-                </Col>
-            </Form.Group>
+            {
+                grammarInputNames.map((name, index) => 
+                    <Form.Group key={name} as={Row} className="mb-2">
+                        <Form.Label column sm="2">
+                            {name}
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control ref={elRefs[index]} className="dontValidate" type="text" placeholder="Type here" />
+                        </Col>
+                    </Form.Group>)
+            }
             <Button variant="success" type="submit">
                 Add Card
             </Button>
