@@ -6,3 +6,7 @@
 .langDropdown:focus {
     box-shadow: none !important;
 }
+
+.gapBetweenRows {
+    grid-row-gap: 0.5rem;
+}

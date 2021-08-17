@@ -67,7 +67,7 @@ function NorwegianCard({ cardObj, numOfTranslation }) {
     let gender = "grammarNoun" in singleTranslation ? singleTranslation.grammarNoun.gender : null;
 
     return (
-        <Card>
+        <Card className="mb-2">
             <Card.Header>
                 <DeleteCardModal cardLang="Norwegian" cardId={cardObj._id} translationId={singleTranslation._id} />
             </Card.Header>

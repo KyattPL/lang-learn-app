@@ -1,14 +1,14 @@
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import { useRef, useState } from 'react';
-import React from 'react';
 
+import { useRef, useState, useEffect } from 'react';
+
+import '../styles/AddCard.css';
 import AddCardAbstractForm from './AddCardAbstractForm.jsx';
 import AddCardModal from './AddCardModal.jsx';
-import '../styles/DropdownLiveSearch.css';
 
 function AddCard() {
 
@@ -21,6 +21,18 @@ function AddCard() {
     const [currSpeech, setCurrSpeech] = useState("Adjective");
     const [currWord, setCurrWord] = useState(null);
     const [shouldShowModal, setShouldShowModal] = useState(false);
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowWidth(window.innerWidth);
+        }
+
+        window.addEventListener('resize', handleResize);
+    });
+
+    let numberOfColumns = windowWidth <= 425 ? 12 : 10;
 
     const updateLang = () => {
         setCurrLang(selectLang.current.value);
@@ -39,23 +51,33 @@ function AddCard() {
             <Row>
                 <Col>
                 </Col>
-                <Col xs={10}>
-                    <InputGroup className="mt-2">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>Language:</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control className="langDropdown" onChange={() => updateLang()} ref={selectLang} as="select" defaultValue="Dutch">
-                            {langs.map((lang) => <option key={lang.index}>{lang.lang}</option>)}
-                        </Form.Control>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>Part of speech:</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control className="langDropdown" onChange={() => updateSpeech()} ref={selectSpeech} as="select" defaultValue="Adjective">
-                            <option>Adjective</option>
-                            <option>Noun</option>
-                            <option>Verb</option>
-                        </Form.Control>
-                    </InputGroup>
+                <Col xs={numberOfColumns}>
+                    <Form className="mt-2">
+                        <Form.Row className="align-items-center gapBetweenRows">
+                            <Col xs={12} md={6}>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>Language:</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <Form.Control className="langDropdown" onChange={() => updateLang()} ref={selectLang} as="select" defaultValue="Dutch">
+                                        {langs.map((lang) => <option key={lang.index}>{lang.lang}</option>)}
+                                    </Form.Control>
+                                </InputGroup>
+                            </Col>
+                            <Col xs={12} md={6}>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>Part of speech:</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <Form.Control className="langDropdown" onChange={() => updateSpeech()} ref={selectSpeech} as="select" defaultValue="Adjective">
+                                        <option>Adjective</option>
+                                        <option>Noun</option>
+                                        <option>Verb</option>
+                                    </Form.Control>
+                                </InputGroup>
+                            </Col>
+                        </Form.Row>
+                    </Form>
                 </Col>
                 <Col>
                 </Col>
@@ -63,13 +85,13 @@ function AddCard() {
             <Row>
                 <Col>
                 </Col>
-                <Col xs={10} className="mt-2">
-                    <AddCardAbstractForm showModal={showModal} wordSetter={setCurrWord} langSelected={currLang} grammarSelected={currSpeech}/>
+                <Col xs={numberOfColumns} className="mt-2">
+                    <AddCardAbstractForm showModal={showModal} wordSetter={setCurrWord} langSelected={currLang} grammarSelected={currSpeech} />
                 </Col>
                 <Col>
                 </Col>
             </Row>
-            <AddCardModal show={shouldShowModal} addedWord={currWord} handleClose={() => setShouldShowModal(false)}/>
+            <AddCardModal show={shouldShowModal} addedWord={currWord} handleClose={() => setShouldShowModal(false)} />
         </Container >
     )
 }

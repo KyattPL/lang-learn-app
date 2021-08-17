@@ -1,4 +1,13 @@
+.langDropdown {
+    border-color: #ced4da !important;
+    background-image: none !important;
+}
+
 .dontValidate {
     border-color: #ced4da !important;
     background-image: none !important;
+}
+
+.gapBetweenRows {
+    grid-row-gap: 0.5rem;
 }
