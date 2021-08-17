@@ -84,42 +84,42 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
     return (
         <Form onSubmit={addCard} noValidate validated={validated}>
             <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
+                <Form.Label column md="3">
                     Word
                 </Form.Label>
-                <Col sm={10}>
+                <Col md={9}>
                     <Form.Control ref={wordInput} required type="text" placeholder="Type here" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
+                <Form.Label column md="3">
                     Pronounciation
                 </Form.Label>
-                <Col sm={10}>
+                <Col md={9}>
                     <Form.Control ref={pronInput} required type="text" placeholder="Type here" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
+                <Form.Label column md="3">
                     Meaning
                 </Form.Label>
-                <Col sm={10}>
+                <Col md={9}>
                     <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
+                <Form.Label column md="3">
                     Countable
                 </Form.Label>
-                <Col sm={10}>
+                <Col md={9}>
                     <Form.Control onClick={() => setCheckedCountable(!checkedCountable)} style={{ width: "auto" }} type="checkbox" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
-                <Form.Label column sm="2">
+                <Form.Label column md="3">
                     Gender
                 </Form.Label>
-                <Col sm={10}>
+                <Col md={9}>
                     <Form.Control ref={genderInput} required as="select">
                         <option value="masculine">Masculine</option>
                         <option value="feminine">Feminine</option>
@@ -130,10 +130,10 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
             {
                 grammarInputNames.map((name, index) =>
                     <Form.Group key={name} as={Row} className="mb-2">
-                        <Form.Label column sm="2">
+                        <Form.Label column md="3">
                             {name}
                         </Form.Label>
-                        <Col sm={10}>
+                        <Col md={9}>
                             <Form.Control ref={elRefs[index]} className="dontValidate" type="text" placeholder="Type here" />
                         </Col>
                     </Form.Group>)

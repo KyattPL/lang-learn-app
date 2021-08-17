@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import '../styles/SearchCard.css';
 import TranslationGroup from './TranslationGroup.jsx';
@@ -25,6 +25,18 @@ function SearchCard() {
 
     const [noWord, setNoWord] = useState(null);
     const [shouldShowModal, setShouldShowModal] = useState(false);
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowWidth(window.innerWidth);
+        }
+
+        window.addEventListener('resize', handleResize);
+    });
+
+    let numberOfColumns = windowWidth <= 425 ? 12 : 10;
 
     const handleClose = () => setShouldShowModal(false);
 
@@ -69,28 +81,35 @@ function SearchCard() {
             <Row>
                 <Col>
                 </Col>
-                <Col xs={10}>
+                <Col xs={numberOfColumns}>
                     <Form className="mt-2" noValidate validated={validated} onSubmit={searchCard}>
-                        <Form.Label htmlFor="inlineFormInputGroup" srOnly>
-                            Word
-                        </Form.Label>
-                        <InputGroup>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>Language:</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <Form.Control className="langDropdown" ref={selectInput} as="select" defaultValue="Norwegian">
-                                <option>Dutch</option>
-                                <option>Norwegian</option>
-                            </Form.Control>
-                            <InputGroup.Prepend>
-                                <InputGroup.Text>Search:</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl required ref={wordInput} placeholder="Word" data-testid="testWordInput" />
-                            <FormControl.Feedback style={{ order: 4 }} type="invalid">Empty box!</FormControl.Feedback>
-                            <Button data-testid="testButtonSearch" type="submit" variant="success">
-                                Submit
-                            </Button>
-                        </InputGroup>
+                        <Form.Row className="align-items-center gapBetweenRows">
+                            <Col xs={12} sm={6} md={5}>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>Language:</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <Form.Control className="langDropdown" ref={selectInput} as="select" defaultValue="Norwegian">
+                                        <option>Dutch</option>
+                                        <option>Norwegian</option>
+                                    </Form.Control>
+                                </InputGroup>
+                            </Col>
+                            <Col xs={12} sm={6} md={5}>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>Word:</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl required ref={wordInput} placeholder="Word" data-testid="testWordInput" />
+                                    <FormControl.Feedback style={{ order: 4 }} type="invalid">Empty box!</FormControl.Feedback>
+                                </InputGroup>
+                            </Col>
+                            <Col xs={12} md={2}>
+                                <Button data-testid="testButtonSearch" type="submit" variant="success" block>
+                                    Submit
+                                </Button>
+                            </Col>
+                        </Form.Row>
                     </Form>
                 </Col>
                 <Col>
@@ -99,7 +118,7 @@ function SearchCard() {
             <Row>
                 <Col>
                 </Col>
-                <Col xs={10} className="mt-2">
+                <Col xs={numberOfColumns} className="mt-2">
                     {hasBeenFound ? <TranslationGroup cardLang={cardLang} cardObj={cardInfo} /> : null}
                 </Col>
                 <Col>
