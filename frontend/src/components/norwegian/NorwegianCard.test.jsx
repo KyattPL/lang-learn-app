@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import mockConsole from "jest-mock-console";
 import { fireEvent, screen } from "@testing-library/dom";
 
@@ -197,10 +197,11 @@ test('fail NorwegianCard render on wrong card obj structure', () => {
             }
         ]
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<NorwegianCard cardObj={testObj} numOfTranslation={0} />)
     }).toThrowError();
+    restoreConsole();
 });
 
 test('fail NorwegianCard render on wrong card obj translation structure', () => {
@@ -218,10 +219,11 @@ test('fail NorwegianCard render on wrong card obj translation structure', () => 
             }
         ]
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<NorwegianCard cardObj={testObj} numOfTranslation={0} />)
     }).toThrowError();
+    restoreConsole();
 });
 
 test('fail NorwegianCard render on wrong card obj translation structure on a small screen', () => {
@@ -240,10 +242,11 @@ test('fail NorwegianCard render on wrong card obj translation structure on a sma
             }
         ]
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<NorwegianCard cardObj={testObj} numOfTranslation={0} />)
     }).toThrowError();
+    restoreConsole();
 });
 
 test('resize NorwegianCard', () => {
@@ -272,7 +275,9 @@ test('resize NorwegianCard', () => {
     };
     render(<NorwegianCard cardObj={testObj} numOfTranslation={0} />);
     global.innerWidth = 500;
-    fireEvent.resize(window);
+    act(() => {
+        fireEvent.resize(window);
+    });
     const element = screen.getByTestId("testCard");
     expect(element).toEqual(expect.anything());
 });

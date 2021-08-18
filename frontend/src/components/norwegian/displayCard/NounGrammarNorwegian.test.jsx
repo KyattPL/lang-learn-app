@@ -16,18 +16,20 @@ test('render NounGrammarNorwegian', () => {
 });
 
 test('fail NounGrammarNorwegian render on null props ', () => {
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<NounGrammarNorwegian />)
     }).toThrowError();
+    restoreConsole();
 });
 
 test('fail NounGrammarNorwegian render on wrong prop structure', () => {
     const testObj = {
 
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<NounGrammarNorwegian grammarObj={testObj} />)
     }).toThrowError();
+    restoreConsole();
 });

@@ -6,6 +6,7 @@ test('fail SmVerbGrammarNorwegian render on wrong grammarObj structure ', () => 
     const testObj = {
         "presentPerfect": "va faaan",
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => render(<SmVerbGrammarNorwegian grammarObj={testObj} />)).toThrowError();
+    restoreConsole();
 });

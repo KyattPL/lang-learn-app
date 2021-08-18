@@ -6,6 +6,7 @@ test('fail SmAdjGrammarNorwegian render on wrong grammarObj structure ', () => {
     const testObj = {
         "feminineSinDef": "ikka"
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => render(<SmAdjGrammarNorwegian grammarObj={testObj} />)).toThrowError();
+    restoreConsole();
 });

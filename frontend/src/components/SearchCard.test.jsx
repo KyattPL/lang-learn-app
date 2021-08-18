@@ -1,8 +1,7 @@
 import SearchCard from './SearchCard.jsx';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, act } from '@testing-library/react';
 import { fireEvent, screen } from "@testing-library/dom";
 import { fetchGetCard } from "../utils/fetchGetCard.js";
-import mockConsole from "jest-mock-console";
 
 jest.mock("../utils/fetchGetCard.js");
 
@@ -74,11 +73,9 @@ test('render SearchCard and test card finding for nonexistent word ', async () =
     await waitFor(() => expect(screen.queryByText("Not in dictionary")).toBe(null));
 });
 
-
-// TODO: EXPECT SOMETHING USEFUL FROM THESE 3 FUNCTIONS
 test('render SearchCard and test DB_ERR from fetch call ', async () => {
     fetchGetCard.mockResolvedValue("DB_ERR");
-    mockConsole();
+    console.error = jest.fn();
 
     render(<SearchCard />);
     const testButtonSearch = screen.getByTestId("testButtonSearch");
@@ -87,11 +84,13 @@ test('render SearchCard and test DB_ERR from fetch call ', async () => {
     testWordInput.value = "zzzzz";
 
     fireEvent.click(testButtonSearch);
+
+    await waitFor(() => expect(console.error).toHaveBeenCalledWith('DB_ERR'));
 });
 
 test('render SearchCard and test MISSING_WORD_PASSED from fetch call ', async () => {
     fetchGetCard.mockResolvedValue("MISSING_WORD_PASSED");
-    mockConsole();
+    console.error = jest.fn();
 
     render(<SearchCard />);
     const testButtonSearch = screen.getByTestId("testButtonSearch");
@@ -100,11 +99,12 @@ test('render SearchCard and test MISSING_WORD_PASSED from fetch call ', async ()
     testWordInput.value = "zzzzz";
 
     fireEvent.click(testButtonSearch);
+    await waitFor(() => expect(console.error).toHaveBeenCalledWith('MISSING_WORD_PASSED'));
 });
 
 test('render SearchCard and test rejected promise from fetch call ', async () => {
     fetchGetCard.mockRejectedValue("fetchGetCard API call return rejected promise");
-    mockConsole();
+    console.error = jest.fn();
 
     render(<SearchCard />);
     const testButtonSearch = screen.getByTestId("testButtonSearch");
@@ -113,4 +113,29 @@ test('render SearchCard and test rejected promise from fetch call ', async () =>
     testWordInput.value = "zzzzz";
 
     fireEvent.click(testButtonSearch);
+    await waitFor(() => expect(console.error).toHaveBeenCalledWith('Error:', 'fetchGetCard API call return rejected promise'));
+});
+
+test('render SearchCard and test proxy error from fetch call', async () => {
+    fetchGetCard.mockResolvedValue("Proxy error:");
+    console.error = jest.fn();
+
+    render(<SearchCard />);
+    const testButtonSearch = screen.getByTestId("testButtonSearch");
+    const testWordInput = screen.getByTestId("testWordInput");
+
+    testWordInput.value = "hund";
+
+    fireEvent.click(testButtonSearch);
+    await waitFor(() => expect(console.error).toHaveBeenCalledWith('Proxy error:'));
+});
+
+test('resize SearchCard', () => {
+    render(<SearchCard />);
+    global.innerWidth = 420;
+    act(() => {
+        fireEvent.resize(window);
+    });
+    const column = screen.getByTestId('testFormCol');
+    expect(column).toHaveClass('col-12');
 });

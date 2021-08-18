@@ -27,18 +27,20 @@ test('render AdjGrammarNorwegian ', () => {
 
 
 test('fail AdjGrammarNorwegian on null props', () => {
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<AdjGrammarNorwegian />)
     }).toThrowError();
+    restoreConsole();
 });
 
 test('fail AdjGrammarNorwegian on wrong prop structure', () => {
-    mockConsole();
+    const restoreConsole = mockConsole();
     const testObj = {
         "feminineSinDef": "ikka"
     };
     expect(() => {
         render(<AdjGrammarNorwegian grammarObj={testObj} />)
     }).toThrowError();
+    restoreConsole();
 });
