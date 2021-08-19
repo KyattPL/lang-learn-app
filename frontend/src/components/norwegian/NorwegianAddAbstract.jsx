@@ -10,7 +10,7 @@ function NorwegianAddAbstract({speech, wordSetter, showModal}) {
         case "Adjective": result = <NorwegianAddAdjective showModal={showModal} wordSetter={wordSetter} />; break;
         case "Noun": result = <NorwegianAddNoun showModal={showModal} wordSetter={wordSetter}/>; break;
         case "Verb": result = <NorwegianAddVerb showModal={showModal} wordSetter={wordSetter}/>; break;
-        default: result = <div>NULL</div>; break;
+        default: result = <div data-testid="testNorAddAbstr">NULL</div>; break;
     }
 
     return (

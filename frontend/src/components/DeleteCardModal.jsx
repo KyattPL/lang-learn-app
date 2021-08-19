@@ -58,7 +58,7 @@ function DeleteCardModal({ cardLang, cardId, translationId }) {
 
     return (
         <>
-            <Button variant="danger" onClick={handleOpen}>
+            <Button variant="danger" onClick={handleOpen} data-testid="testOpenModalButton">
                 Delete
             </Button>
             <Modal show={isShown} onHide={handleClose}>
@@ -68,19 +68,19 @@ function DeleteCardModal({ cardLang, cardId, translationId }) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form noValidate validated={validated} id="passwordForm" onSubmit={formSubmit}>
+                    <Form noValidate validated={validated} id="passwordForm" onSubmit={formSubmit} data-testid="testFormDeleteCard">
                         <Form.Group>
                             <Form.Label>Please type in a password:</Form.Label>
-                            <Form.Control type="password" placeholder="Password" ref={passInput} id="passInput" />
+                            <Form.Control type="password" placeholder="Password" ref={passInput} id="passInput" data-testid="testPassInput"/>
                             <Form.Control.Feedback type="invalid">Wrong password</Form.Control.Feedback>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleDelete}>
+                    <Button variant="danger" onClick={handleDelete} data-testid="testSendPassButton">
                         Delete
                     </Button>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={handleClose} data-testid="testCloseModalButton">
                         Close
                     </Button>
                 </Modal.Footer>
