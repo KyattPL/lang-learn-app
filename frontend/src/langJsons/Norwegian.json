@@ -1,27 +1,27 @@
 {
     "addAdjective": {
-        "word": "",
+        "word": "0",
         "translation": [
             {
                 "type": "adjective",
-                "pronounciation": "",
-                "meaning": "",
-                "grammarAdj": {
-                    "masculineSinIndef": "",
-                    "masculineSinDef": "",
-                    "masculinePlIndef": "",
-                    "masculinePlDef": "",
-                    "feminineSinIndef": "",
-                    "feminineSinDef": "",
-                    "femininePlIndef": "",
-                    "femininePlDef": "",
-                    "neuterSinIndef": "",
-                    "neuterSinDef": "",
-                    "neuterPlIndef": "",
-                    "neuterPlDef": "",
-                    "comparative": "",
-                    "indefSuperlative": "",
-                    "defSuperlative": ""
+                "pronounciation": "1",
+                "meaning": "2",
+                "grammarAdjective": {
+                    "masculineSinIndef": "3",
+                    "masculineSinDef": "4",
+                    "masculinePlIndef": "5",
+                    "masculinePlDef": "6",
+                    "feminineSinIndef": "7",
+                    "feminineSinDef": "8",
+                    "femininePlIndef": "9",
+                    "femininePlDef": "10",
+                    "neuterSinIndef": "11",
+                    "neuterSinDef": "12",
+                    "neuterPlIndef": "13",
+                    "neuterPlDef": "14",
+                    "comparative": "15",
+                    "indefSuperlative": "16",
+                    "defSuperlative": "17"
                 }
             }
         ]
@@ -45,23 +45,23 @@
         ]
     },
     "addVerb": {
-        "word": "",
+        "word": "nv1",
         "translation": [
             {
                 "type": "verb",
-                "pronounciation": "",
-                "meaning": "",
+                "pronounciation": "nv2",
+                "meaning": "nv3",
                 "grammarVerb": {
-                    "infinitive": "",
-                    "present": "",
-                    "past": "",
-                    "future": "",
-                    "conditional": "",
-                    "imperative": "",
-                    "presentPerfect": "",
-                    "pastPerfect": "",
-                    "futurePerfect": "",
-                    "conditionalPerfect": ""
+                    "infinitive": "nv4",
+                    "present": "nv5",
+                    "past": "nv6",
+                    "future": "nv7",
+                    "conditional": "nv8",
+                    "imperative": "nv9",
+                    "presentPerfect": "nv10",
+                    "pastPerfect": "nv11",
+                    "futurePerfect": "nv12",
+                    "conditionalPerfect": "nv13"
                 }
             }
         ]

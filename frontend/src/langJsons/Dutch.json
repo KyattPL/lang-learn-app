@@ -1,27 +1,27 @@
 {
     "addAdjective": {
-        "word": "",
+        "word": "da1",
         "translation": [
             {
                 "type": "adjective",
-                "pronounciation": "",
-                "meaning": "",
-                "grammarAdj": {
-                    "masculineSinIndef": "",
-                    "masculineSinDef": "",
-                    "masculinePlIndef": "",
-                    "masculinePlDef": "",
-                    "feminineSinIndef": "",
-                    "feminineSinDef": "",
-                    "femininePlIndef": "",
-                    "femininePlDef": "",
-                    "neuterSinIndef": "",
-                    "neuterSinDef": "",
-                    "neuterPlIndef": "",
-                    "neuterPlDef": "",
-                    "comparative": "",
-                    "indefSuperlative": "",
-                    "defSuperlative": ""
+                "pronounciation": "da2",
+                "meaning": "da3",
+                "grammarAdjective": {
+                    "masculineSinIndef": "da4",
+                    "masculineSinDef": "da5",
+                    "masculinePlIndef": "da6",
+                    "masculinePlDef": "da7",
+                    "feminineSinIndef": "da8",
+                    "feminineSinDef": "da9",
+                    "femininePlIndef": "da10",
+                    "femininePlDef": "da11",
+                    "neuterSinIndef": "da12",
+                    "neuterSinDef": "da13",
+                    "neuterPlIndef": "da14",
+                    "neuterPlDef": "da15",
+                    "comparative": "da16",
+                    "indefSuperlative": "da17",
+                    "defSuperlative": "da18"
                 }
             }
         ]
