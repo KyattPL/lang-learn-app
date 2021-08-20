@@ -10,21 +10,21 @@ global.fetch = jest.fn(() => {
 
 test('test fetchGetCard when 2 null parameters were passed ', async () => {
     fetch.mockImplementationOnce(() => Promise.reject("MISSING_LANG_PASSED"));
-    fetchGetCard("", "").catch((reason) => {
+    fetchGetCard(null, null).catch((reason) => {
         expect(reason).toBe("MISSING_LANG_PASSED")
     });
 });
 
 test('test fetchGetCard when null lang was passed ', async () => {
     fetch.mockImplementationOnce(() => Promise.reject("MISSING_LANG_PASSED"));
-    fetchGetCard("", "hund").catch((reason) => {
+    fetchGetCard(null, "hund").catch((reason) => {
         expect(reason).toBe("MISSING_LANG_PASSED")
     });
 });
 
 test('test fetchGetCard when null word was passed ', async () => {
     fetch.mockImplementationOnce(() => Promise.reject("MISSING_WORD_PASSED"));
-    fetchGetCard("Norwegian", "").catch((reason) => {
+    fetchGetCard("Norwegian", null).catch((reason) => {
         expect(reason).toBe("MISSING_WORD_PASSED")
     });
 });

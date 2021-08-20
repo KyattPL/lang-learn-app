@@ -25,12 +25,13 @@ function AddCard() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
+        let isMounted = true;
         function handleResize() {
-            setWindowWidth(window.innerWidth);
+            if (isMounted) setWindowWidth(window.innerWidth);
         }
-
         window.addEventListener('resize', handleResize);
-    });
+        return () => { isMounted = false };
+    }, []);
 
     let numberOfColumns = windowWidth <= 425 ? 12 : 10;
 
@@ -51,7 +52,7 @@ function AddCard() {
             <Row>
                 <Col>
                 </Col>
-                <Col xs={numberOfColumns}>
+                <Col xs={numberOfColumns} data-testid="testAddCardFormCol">
                     <Form className="mt-2">
                         <Form.Row className="align-items-center gapBetweenRows">
                             <Col xs={12} md={6}>
@@ -59,8 +60,8 @@ function AddCard() {
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>Language:</InputGroup.Text>
                                     </InputGroup.Prepend>
-                                    <Form.Control className="langDropdown" onChange={() => updateLang()} ref={selectLang} as="select" defaultValue="Dutch">
-                                        {langs.map((lang) => <option key={lang.index}>{lang.lang}</option>)}
+                                    <Form.Control className="langDropdown" onChange={() => updateLang()} ref={selectLang} as="select" defaultValue="Dutch" data-testid="testLangDropdown">
+                                        {langs.map((lang) => <option key={lang.index} data-testid={lang.lang}>{lang.lang}</option>)}
                                     </Form.Control>
                                 </InputGroup>
                             </Col>
@@ -69,7 +70,7 @@ function AddCard() {
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>Part of speech:</InputGroup.Text>
                                     </InputGroup.Prepend>
-                                    <Form.Control className="langDropdown" onChange={() => updateSpeech()} ref={selectSpeech} as="select" defaultValue="Adjective">
+                                    <Form.Control className="langDropdown" onChange={() => updateSpeech()} ref={selectSpeech} as="select" defaultValue="Adjective" data-testid="testSpeechDropdown">
                                         <option>Adjective</option>
                                         <option>Noun</option>
                                         <option>Verb</option>

@@ -82,13 +82,13 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
     }
 
     return (
-        <Form onSubmit={addCard} noValidate validated={validated}>
+        <Form onSubmit={addCard} noValidate validated={validated} data-testid="testNorAddNounForm">
             <Form.Group as={Row} className="mb-2">
                 <Form.Label column md="3">
                     Word
                 </Form.Label>
                 <Col md={9}>
-                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" data-testid="testNorAddNounWordInp" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -96,7 +96,7 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                     Pronounciation
                 </Form.Label>
                 <Col md={9}>
-                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" data-testid="testNorAddNounPronInp" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -104,7 +104,7 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                     Meaning
                 </Form.Label>
                 <Col md={9}>
-                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" data-testid="testNorAddNounMeanInp" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -112,7 +112,7 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                     Countable
                 </Form.Label>
                 <Col md={9}>
-                    <Form.Control onClick={() => setCheckedCountable(!checkedCountable)} style={{ width: "auto" }} type="checkbox" />
+                    <Form.Control onClick={() => setCheckedCountable(!checkedCountable)} style={{ width: "auto" }} type="checkbox" data-testid="testCountCheckbox"/>
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -138,7 +138,7 @@ function NorwegianAddNoun({ wordSetter, showModal }) {
                         </Col>
                     </Form.Group>)
             }
-            <Button variant="success" type="submit">
+            <Button variant="success" type="submit" data-testid="testNorAddNounSubmit">
                 Add Card
             </Button>
         </Form>

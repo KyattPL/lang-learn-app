@@ -26,9 +26,9 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
     const [elRefs, setElRefs] = useState([]);
 
     useEffect(() => {
-      setElRefs(elRefs => (
-        Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
-      ));
+        setElRefs(elRefs => (
+            Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
+        ));
     }, [grammarInputLen]);
 
     const addCard = (event) => {
@@ -70,9 +70,9 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                     console.error(data);
                 } else if (data === "Internal Server Error") {
                     console.error("There was a problem with saving your card to the database");
-                } else if (data.startsWith("Proxy error:")){
+                } else if (data.startsWith("Proxy error:")) {
                     console.error(data);
-                } else  {
+                } else {
                     clearForm();
                     showModal();
                 }
@@ -85,19 +85,19 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
     };
 
     const clearForm = () => {
-        for (let i=0; i < grammarInputLen; i++) {
+        for (let i = 0; i < grammarInputLen; i++) {
             elRefs[i].current.value = '';
         }
     }
 
     return (
-        <Form onSubmit={addCard} noValidate validated={validated}>
+        <Form onSubmit={addCard} noValidate validated={validated} data-testid="testNorwegianAddAdjForm">
             <Form.Group as={Row} className="mb-2">
                 <Form.Label column sm="2">
                     Word
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" data-testid="testNorAddAdjWord" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -105,7 +105,7 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                     Pronounciation
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" data-testid="testNorAddAdjPron" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -113,21 +113,21 @@ function NorwegianAddAdjective({ wordSetter, showModal }) {
                     Meaning
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" data-testid="testNorAddAdjMean" />
                 </Col>
             </Form.Group>
             {
-                grammarInputNames.map((name, index) => 
+                grammarInputNames.map((name, index) =>
                     <Form.Group as={Row} className="mb-2" key={name}>
                         <Form.Label column sm="2">
                             {name}
                         </Form.Label>
                         <Col sm={10}>
-                            <Form.Control ref={elRefs[index]} className="dontValidate" type="text" placeholder="Type here"/>
+                            <Form.Control ref={elRefs[index]} className="dontValidate" type="text" placeholder="Type here" />
                         </Col>
                     </Form.Group>)
             }
-            <Button variant="success" type="submit">
+            <Button variant="success" type="submit" data-testid="testNorAddAdjButton">
                 Add Card
             </Button>
         </Form>

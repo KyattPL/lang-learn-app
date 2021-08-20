@@ -20,18 +20,20 @@ test('render VerbGrammarNorwegian', () => {
 });
 
 test('fail VerbGrammarNorwegian render on null props', () => {
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<VerbGrammarNorwegian />)
     }).toThrowError();
+    restoreConsole();
 });
 
 test('fail VerbGrammarNorwegian render on wrong prop structure', () => {
     const testObj = {
         "future": "eea",
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => {
         render(<VerbGrammarNorwegian grammarObj={testObj} />)
     }).toThrowError();
+    restoreConsole();
 });

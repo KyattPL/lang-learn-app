@@ -25,9 +25,9 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
 
     useEffect(() => {
         setElRefs(elRefs => (
-          Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
+            Array(grammarInputLen).fill().map((_, i) => elRefs[i] || createRef())
         ));
-      }, [grammarInputLen]);
+    }, [grammarInputLen]);
 
     const addCard = (event) => {
         event.preventDefault();
@@ -63,9 +63,9 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                     console.error(data);
                 } else if (data === "Internal Server Error") {
                     console.error("There was a problem with saving your card to the database");
-                } else if (data.startsWith("Proxy error:")){
+                } else if (data.startsWith("Proxy error:")) {
                     console.error(data);
-                } else  {
+                } else {
                     clearForm();
                     showModal();
                 }
@@ -78,19 +78,19 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
     };
 
     const clearForm = () => {
-        for (let i=0; i < grammarInputLen; i++) {
+        for (let i = 0; i < grammarInputLen; i++) {
             elRefs[i].current.value = '';
         }
     }
 
     return (
-        <Form onSubmit={addCard} noValidate validated={validated}>
+        <Form onSubmit={addCard} noValidate validated={validated} data-testid="testNorwegianAddVerbForm">
             <Form.Group as={Row} className="mb-2">
                 <Form.Label column sm="2">
                     Word
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" data-testid="testNorAddVerbWord" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -98,7 +98,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                     Pronounciation
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" data-testid="testNorAddVerbPron" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -106,11 +106,11 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                     Meaning
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" data-testid="testNorAddVerbMean" />
                 </Col>
             </Form.Group>
             {
-                grammarInputNames.map((name, index) => 
+                grammarInputNames.map((name, index) =>
                     <Form.Group key={name} as={Row} className="mb-2">
                         <Form.Label column sm="2">
                             {name}
@@ -120,7 +120,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                         </Col>
                     </Form.Group>)
             }
-            <Button variant="success" type="submit">
+            <Button variant="success" type="submit" data-testid="testNorAddVerbButton">
                 Add Card
             </Button>
         </Form>

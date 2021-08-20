@@ -37,12 +37,13 @@ function NorwegianCard({ cardObj, numOfTranslation }) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
+        let isMounted = true;
         function handleResize() {
-            setWindowWidth(window.innerWidth);
+            if (isMounted) setWindowWidth(window.innerWidth);
         }
-
         window.addEventListener('resize', handleResize);
-    });
+        return () => { isMounted = false };
+    }, []);
 
     let result = null;
 

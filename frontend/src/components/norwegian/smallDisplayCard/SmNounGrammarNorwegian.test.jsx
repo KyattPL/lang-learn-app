@@ -6,6 +6,7 @@ test('fail SmNounGrammarNorwegian render on wrong grammarObj structure ', () => 
     const testObj = {
         "singularDefinite": "hunden",
     };
-    mockConsole();
+    const restoreConsole = mockConsole();
     expect(() => render(<SmNounGrammarNorwegian grammarObj={testObj} />)).toThrowError();
+    restoreConsole();
 });
