@@ -226,6 +226,65 @@ test('fail NorwegianCard render on wrong card obj translation structure', () => 
     restoreConsole();
 });
 
+test('fail NorwegianCard render on missing word', () => {
+    const testObj = {
+        "translation": [
+            {
+                "type": "verb",
+                "meaning": "Test stuff",
+                "grammarVerb": {
+                    "infinitive": "faef",
+                    "present": "aefaf",
+                    "past": "efffe",
+                    "future": "eea",
+                    "conditional": "fafa",
+                    "imperative": "fafaef",
+                    "presentPerfect": "va faaan",
+                    "pastPerfect": "fafeee",
+                    "futurePerfect": "fafaa",
+                    "conditionalPerfect": "fff",
+                    "_id": 420
+                }
+            }
+        ]
+    };
+    const restoreConsole = mockConsole();
+    expect(() => {
+        render(<NorwegianCard cardObj={testObj} numOfTranslation={0} />)
+    }).toThrowError();
+    restoreConsole();
+});
+
+test('fail NorwegianCard render on missing pronounciation in translation obj', () => {
+    const testObj = {
+        "word": "faef",
+        "translation": [
+            {
+                "type": "verb",
+                "meaning": "Test stuff",
+                "grammarVerb": {
+                    "infinitive": "faef",
+                    "present": "aefaf",
+                    "past": "efffe",
+                    "future": "eea",
+                    "conditional": "fafa",
+                    "imperative": "fafaef",
+                    "presentPerfect": "va faaan",
+                    "pastPerfect": "fafeee",
+                    "futurePerfect": "fafaa",
+                    "conditionalPerfect": "fff",
+                    "_id": 420
+                }
+            }
+        ]
+    };
+    const restoreConsole = mockConsole();
+    expect(() => {
+        render(<NorwegianCard cardObj={testObj} numOfTranslation={0} />)
+    }).toThrowError();
+    restoreConsole();
+});
+
 test('fail NorwegianCard render on wrong card obj translation structure on a small screen', () => {
     global.innerWidth = 500;
     const testObj = {

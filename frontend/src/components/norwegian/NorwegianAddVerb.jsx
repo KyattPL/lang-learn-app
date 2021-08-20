@@ -90,7 +90,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                     Word
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" data-testid="testNorAddVerbWord" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -98,7 +98,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                     Pronounciation
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" data-testid="testNorAddVerbPron" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -106,7 +106,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                     Meaning
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" />
+                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" data-testid="testNorAddVerbMean" />
                 </Col>
             </Form.Group>
             {
@@ -120,7 +120,7 @@ function NorwegianAddVerb({ wordSetter, showModal }) {
                         </Col>
                     </Form.Group>)
             }
-            <Button variant="success" type="submit">
+            <Button variant="success" type="submit" data-testid="testNorAddVerbButton">
                 Add Card
             </Button>
         </Form>
