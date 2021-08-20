@@ -27,19 +27,19 @@
         ]
     },
     "addNoun": {
-        "word": "Word",
+        "word": "",
         "translation": [
             {
                 "type": "noun",
-                "pronounciation": "Pronounciation",
-                "meaning": "Meaning",
+                "pronounciation": "",
+                "meaning": "",
                 "grammarNoun": {
-                    "countable": "Countable",
-                    "gender": "Gender",
-                    "singularIndefinite": "Singular Indefinite",
-                    "singularDefinite": "Singular Definite",
-                    "pluralIndefinite": "Plural Indefinite",
-                    "pluralDefinite": "Plural Definite"
+                    "countable": "",
+                    "gender": "",
+                    "singularIndefinite": "",
+                    "singularDefinite": "",
+                    "pluralIndefinite": "",
+                    "pluralDefinite": ""
                 }
             }
         ]
