@@ -18,7 +18,7 @@ function SearchCard() {
     const [validated, setValidated] = useState(false);
     const [hasBeenFound, setFound] = useState(false);
     const wordInput = useRef(null);
-    const selectInput = useRef(null);
+    const langInput = useRef(null);
 
     const [cardInfo, setCardInfo] = useState(null);
     const [cardLang, setCardLang] = useState(null);
@@ -53,7 +53,7 @@ function SearchCard() {
 
         if (event.currentTarget.checkValidity() === true) {
             setValidated(false);
-            fetchGetCard(selectInput.current.value, wordInput.current.value)
+            fetchGetCard(langInput.current.value, wordInput.current.value)
                 .then(data => {
                     if (data === "DB_ERR" || data === "MISSING_WORD_PASSED" || data === "MISSING_LANG_PASSED") {
                         console.error(data);
@@ -64,7 +64,7 @@ function SearchCard() {
                             console.error(data);
                         } else {
                             setCardInfo(JSON.parse(data));
-                            setCardLang(selectInput.current.value);
+                            setCardLang(langInput.current.value);
                             setFound(true);
                         }
                     }
@@ -89,7 +89,7 @@ function SearchCard() {
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>Language:</InputGroup.Text>
                                     </InputGroup.Prepend>
-                                    <Form.Control className="langDropdown" ref={selectInput} as="select" defaultValue="Norwegian">
+                                    <Form.Control className="langDropdown" ref={langInput} as="select" defaultValue="Norwegian">
                                         <option>Dutch</option>
                                         <option>Norwegian</option>
                                     </Form.Control>

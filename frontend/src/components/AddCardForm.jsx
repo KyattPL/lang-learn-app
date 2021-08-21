@@ -6,15 +6,15 @@ import Row from 'react-bootstrap/Row';
 
 import { fetchAddCard } from '../utils/fetchAddCard.js';
 import { dashOnEmptyInput } from '../utils/dashOnEmptyInput.js';
+import { createAddCardInput } from '../utils/createAddCardInput.js';
 
-function AddCardAbstractForm({ langSelected, grammarSelected, wordSetter, showModal }) {
+function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
 
     const [grammarInputNames, setGrammarInputNames] = useState(null);
     const [grammarInputLen, setGrammarInputLen] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     const [validated, setValidated] = useState(false);
-    // const [checkedCountable, setCheckedCountable] = useState(false);
 
     const wordInput = useRef(null);
     const pronInput = useRef(null);
@@ -48,12 +48,17 @@ function AddCardAbstractForm({ langSelected, grammarSelected, wordSetter, showMo
     }, [isLoading, grammarInputLen]);
 
     const clearForm = () => {
+        wordInput.current.value = '';
+        pronInput.current.value = '';
+        meanInput.current.value = '';
         for (let i = 0; i < grammarInputLen; i++) {
-            elRefs[i].current.value = '';
+            if (elRefs[i].current.type !== 'checkbox' && elRefs[i].current.type !== 'select-one') {
+                elRefs[i].current.value = '';
+            }
         }
     }
 
-    function createFetchCardObj(lang, grammar) {
+    const createFetchCardObj = (lang, grammar) => {
         const file = require(`../langJsons/${lang}.json`);
         const obj = file[`add${grammar}`];
         const grammarObjName = `grammar${grammar}`;
@@ -129,15 +134,7 @@ function AddCardAbstractForm({ langSelected, grammarSelected, wordSetter, showMo
                 </Col>
             </Form.Group>
             {
-                grammarInputNames.map((name, index) =>
-                    <Form.Group key={name} as={Row} className="mb-2">
-                        <Form.Label column md="3">
-                            {name}
-                        </Form.Label>
-                        <Col md={9}>
-                            <Form.Control ref={elRefs[index]} className="dontValidate" type="text" placeholder="Type here" />
-                        </Col>
-                    </Form.Group>)
+                grammarInputNames.map((name, index) => createAddCardInput(name, elRefs[index]))
             }
             <Button variant="success" type="submit" data-testid="testNorAddNounSubmit">
                 Add Card
@@ -145,4 +142,4 @@ function AddCardAbstractForm({ langSelected, grammarSelected, wordSetter, showMo
         </Form> : <div>LOADING</div>
 }
 
-export default AddCardAbstractForm;
+export default AddCardForm;

@@ -26,6 +26,44 @@
             }
         ]
     },
+    "displayAdjective": {
+        "regular": [
+            [
+                "XXX",
+                "Singular",
+                "Plural"
+            ],
+            [
+                "XXX",
+                "Indefinite",
+                "Definite",
+                "Indefinite",
+                "Definite"
+            ],
+            [
+                "masc.",
+                "m1",
+                "m2",
+                "m3",
+                "m4"
+            ],
+            [
+                "fem.",
+                "f1",
+                "f2",
+                "f3",
+                "f4"
+            ],
+            [
+                "neuter",
+                "n1",
+                "n2",
+                "n3",
+                "n4"
+            ]
+        ],
+        "small": []
+    },
     "addNoun": {
         "word": "Word",
         "translation": [
@@ -42,6 +80,44 @@
                     "pluralDefinite": "Plural Definite"
                 }
             }
+        ]
+    },
+    "displayNoun": {
+        "regular": [
+            [
+                "",
+                "**Singular",
+                "**Plural",
+                "😀"
+            ],
+            [
+                "Idefinite",
+                "$singularIndefinite",
+                "$pluralIndefinite"
+            ],
+            [
+                "Definite",
+                "$singularDefinite",
+                "$pluralDefinite"
+            ]
+        ],
+        "small": [
+            [
+                "Singular Indefinite",
+                "$singularIndefinite"
+            ],
+            [
+                "Singular Definite",
+                "$singularDefinite"
+            ],
+            [
+                "Plural Indefinite",
+                "$pluralIndefinite"
+            ],
+            [
+                "Plural Definite",
+                "$pluralDefinite"
+            ]
         ]
     },
     "addVerb": {
