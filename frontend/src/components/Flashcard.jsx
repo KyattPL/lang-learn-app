@@ -4,6 +4,8 @@ import Table from 'react-bootstrap/Table';
 
 import DeleteCardModal from './DeleteCardModal.jsx';
 
+import '../styles/CardTable.css';
+
 const typeOfSpeech = (cardObj) => {
     let type = cardObj['translation'][0]['type'];
     return type[0].toUpperCase() + type.slice(1);
@@ -14,10 +16,50 @@ const getDisplayObj = (cardLang, grammarType) => {
     return file[`display${grammarType}`];
 }
 
-const createSingleTable = (wholeTable) => {
-    return (
-        <Table bordered hover size="sm">
+const createCell = (index, cell, cardObj, numOfTranslation, grammarType) => {
+    let outside = null;
+    let inside = null;
 
+    if (cell === '') {
+        return <td key={index}></td>
+    }
+
+    if (cell.includes('$')) {
+        let propertyName = cell.replaceAll('$', '');
+        inside = cardObj['translation'][numOfTranslation][`grammar${grammarType}`][propertyName];
+    } else {
+        inside = cell.replaceAll('#', '').replaceAll('*', '');
+    }
+
+    if (cell.includes('#') && cell.includes('*')) {
+        let numberOfCols = cell.match(/\*/g || []).length;
+        outside = <th className="cardTableHeader" colSpan={numberOfCols} key={index}>{inside}</th>;
+    } else if (cell.includes('#')) {
+        outside = <th className="cardTableHeader" key={index}>{inside}</th>;
+    } else if (cell.includes('*')) {
+        let numberOfCols = cell.match(/\*/g || []).length;
+        outside = <td colSpan={numberOfCols} key={index}>{inside}</td>;
+    } else {
+        outside = <td key={index}>{inside}</td>;
+    }
+
+    return outside;
+}
+
+const createRow = (index, row, cardObj, numOfTranslation, grammarType) => {
+    return (
+        <tr key={index}>
+            { row.map((cell, index) => createCell(index, cell, cardObj, numOfTranslation, grammarType)) }
+        </tr>
+    )
+}
+
+const createSingleTable = (index, wholeTable, cardObj, numOfTranslation, grammarType) => {
+    return (
+        <Table bordered hover size="sm" key={index}>
+            <tbody data-testid="testCard">
+                { wholeTable.map((row, index) => createRow(index, row, cardObj, numOfTranslation, grammarType)) }
+            </tbody>
         </Table>
     );
 }
@@ -25,23 +67,17 @@ const createSingleTable = (wholeTable) => {
 const constructTables = (cardObj, grammarType, displayObj, isSmallScreen, numOfTranslation) => {
     const screenType = isSmallScreen ? 'small' : 'regular';
     const structure = displayObj[screenType];
-    console.log(structure);
     return (
         <>
-            {structure.forEach((wholeTable) => createSingleTable(wholeTable))}
+            {structure.map((wholeTable, index) => createSingleTable(index, wholeTable, cardObj, numOfTranslation, grammarType))}
         </>
     );
 }
 
-// Do something with gender and countable stuff
+// Do something with gender and countable stuff - Nouns
+// Do something with infinitives - Verbs
 function Flashcard({ cardLang, cardObj, numOfTranslation }) {
 
-    // 1. Based on cardObj, check the type of speech
-    // 2. Then go to <cardLang>.json and find display<typeOfSpeech> object or sth
-    // 3. In display<typeOfSpeech> there should be 2 properties: regular and small (for screen sizes)
-    // 4. ??? Somehow define the card structure with JSON ???
-    // 5. Create the table according to this structure
-    // 6. Profit
     const singleTranslation = cardObj.translation[numOfTranslation];
     const grammarType = typeOfSpeech(cardObj);
     const displayObj = getDisplayObj(cardLang, grammarType);
