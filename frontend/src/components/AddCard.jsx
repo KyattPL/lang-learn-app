@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import { useRef, useState, useEffect } from 'react';
 
 import '../styles/AddCard.css';
-import AddCardAbstractForm from './AddCardAbstractForm.jsx';
+import AddCardForm from './AddCardForm.jsx';
 import AddCardModal from './AddCardModal.jsx';
 
 function AddCard() {
@@ -87,7 +87,7 @@ function AddCard() {
                 <Col>
                 </Col>
                 <Col xs={numberOfColumns} className="mt-2">
-                    <AddCardAbstractForm showModal={showModal} wordSetter={setCurrWord} langSelected={currLang} grammarSelected={currSpeech} />
+                    <AddCardForm showModal={showModal} wordSetter={setCurrWord} langSelected={currLang} grammarSelected={currSpeech} />
                 </Col>
                 <Col>
                 </Col>

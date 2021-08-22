@@ -1,0 +1,305 @@
+{
+    "addAdjective": {
+        "word": "0",
+        "translation": [
+            {
+                "type": "adjective",
+                "pronounciation": "1",
+                "meaning": "2",
+                "grammarAdjective": {
+                    "masculineSinIndef": "3",
+                    "masculineSinDef": "4",
+                    "masculinePlIndef": "5",
+                    "masculinePlDef": "6",
+                    "feminineSinIndef": "7",
+                    "feminineSinDef": "8",
+                    "femininePlIndef": "9",
+                    "femininePlDef": "10",
+                    "neuterSinIndef": "11",
+                    "neuterSinDef": "12",
+                    "neuterPlIndef": "13",
+                    "neuterPlDef": "14",
+                    "comparative": "15",
+                    "indefSuperlative": "16",
+                    "defSuperlative": "17"
+                }
+            }
+        ]
+    },
+    "displayAdjective": {
+        "regular": [
+            [
+                [
+                    "",
+                    "#**Singular",
+                    "#**Plural"
+                ],
+                [
+                    "",
+                    "#Indefinite",
+                    "#Definite",
+                    "#Indefinite",
+                    "#Definite"
+                ],
+                [
+                    "#masc.",
+                    "$masculineSinIndef",
+                    "$masculineSinDef",
+                    "$masculinePlIndef",
+                    "$masculinePlDef"
+                ],
+                [
+                    "#fem.",
+                    "$feminineSinIndef",
+                    "$feminineSinDef",
+                    "$femininePlIndef",
+                    "$femininePlDef"
+                ],
+                [
+                    "#neuter",
+                    "$neuterSinIndef",
+                    "$neuterSinDef",
+                    "$neuterPlIndef",
+                    "$neuterPlDef"
+                ]
+            ],
+            [
+                [
+                    "#Comparative",
+                    "#Indefinite superlative",
+                    "#Definite superlative"
+                ],
+                [
+                    "$comparative",
+                    "$indefSuperlative",
+                    "$defSuperlative"
+                ]
+            ]
+        ],
+        "small": [
+            [
+                [
+                    "#**Masculine"
+                ],
+                [
+                    "#Singular Indefinite",
+                    "$masculineSinIndef"
+                ],
+                [
+                    "#Singular Definite",
+                    "$masculineSinDef"
+                ],
+                [
+                    "#Plural Indefinite",
+                    "$masculinePlIndef"
+                ],
+                [
+                    "#Plural Definite",
+                    "$masculinePlDef"
+                ],
+                [
+                    "#**Feminine"
+                ],
+                [
+                    "#Singular Indefinite",
+                    "$feminineSinIndef"
+                ],
+                [
+                    "#Singular Definite",
+                    "$feminineSinDef"
+                ],
+                [
+                    "#Plural Indefinite",
+                    "$femininePlIndef"
+                ],
+                [
+                    "#Plural Definite",
+                    "$femininePlDef"
+                ],
+                [
+                    "#**Neuter"
+                ],
+                [
+                    "#Singular Indefinite",
+                    "$neuterSinIndef"
+                ],
+                [
+                    "#Singular Definite",
+                    "$neuterSinDef"
+                ],
+                [
+                    "#Plural Indefinite",
+                    "$neuterPlIndef"
+                ],
+                [
+                    "#Plural Definite",
+                    "$neuterPlDef"
+                ]
+            ],
+            [
+                [
+                    "#Comparative",
+                    "$comparative"
+                ],
+                [
+                    "#Indefinite Superlative",
+                    "$indefSuperlative"
+                ],
+                [
+                    "#Definite Superlative",
+                    "$defSuperlative"
+                ]
+            ]
+        ]
+    },
+    "addNoun": {
+        "word": "Word",
+        "translation": [
+            {
+                "type": "noun",
+                "pronounciation": "Pronounciation",
+                "meaning": "Meaning",
+                "grammarNoun": {
+                    "countable": "Countable",
+                    "gender": "Gender",
+                    "singularIndefinite": "Singular Indefinite",
+                    "singularDefinite": "Singular Definite",
+                    "pluralIndefinite": "Plural Indefinite",
+                    "pluralDefinite": "Plural Definite"
+                }
+            }
+        ]
+    },
+    "displayNoun": {
+        "regular": [
+            [
+                [
+                    "",
+                    "#Singular",
+                    "#Plural"
+                ],
+                [
+                    "#Idefinite",
+                    "$singularIndefinite",
+                    "$pluralIndefinite"
+                ],
+                [
+                    "#Definite",
+                    "$singularDefinite",
+                    "$pluralDefinite"
+                ]
+            ]
+        ],
+        "small": [
+            [
+                [
+                    "#Singular Indefinite",
+                    "$singularIndefinite"
+                ],
+                [
+                    "#Singular Definite",
+                    "$singularDefinite"
+                ],
+                [
+                    "#Plural Indefinite",
+                    "$pluralIndefinite"
+                ],
+                [
+                    "#Plural Definite",
+                    "$pluralDefinite"
+                ]
+            ]
+        ]
+    },
+    "addVerb": {
+        "word": "nv1",
+        "translation": [
+            {
+                "type": "verb",
+                "pronounciation": "nv2",
+                "meaning": "nv3",
+                "grammarVerb": {
+                    "infinitive": "nv4",
+                    "present": "nv5",
+                    "past": "nv6",
+                    "future": "nv7",
+                    "conditional": "nv8",
+                    "imperative": "nv9",
+                    "presentPerfect": "nv10",
+                    "pastPerfect": "nv11",
+                    "futurePerfect": "nv12",
+                    "conditionalPerfect": "nv13"
+                }
+            }
+        ]
+    },
+    "displayVerb": {
+        "regular": [
+            [
+                [
+                    "",
+                    "#Present",
+                    "#Past",
+                    "#Future",
+                    "#Conditional"
+                ],
+                [
+                    "#Simple",
+                    "$present",
+                    "$past",
+                    "$future",
+                    "$conditional"
+                ],
+                [
+                    "#Perfect",
+                    "$presentPerfect",
+                    "$pastPerfect",
+                    "$futurePerfect",
+                    "$conditionalPerfect"
+                ]
+            ]
+        ],
+        "small": [
+            [
+                [
+                    "#**Simple"
+                ],
+                [
+                    "#Present",
+                    "$present"
+                ],
+                [
+                    "#Past",
+                    "$past"
+                ],
+                [
+                    "#Future",
+                    "$future"
+                ],
+                [
+                    "#Conditional",
+                    "$conditional"
+                ],
+                [
+                    "#**Perfect"
+                ],
+                [
+                    "#Present",
+                    "$presentPerfect"
+                ],
+                [
+                    "#Past",
+                    "$pastPerfect"
+                ],
+                [
+                    "#Future",
+                    "$futurePerfect"
+                ],
+                [
+                    "#Conditional",
+                    "$conditionalPerfect"
+                ]
+            ]
+        ]
+    }
+}

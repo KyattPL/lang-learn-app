@@ -1,0 +1,69 @@
+{
+    "addAdjective": {
+        "word": "da1",
+        "translation": [
+            {
+                "type": "adjective",
+                "pronounciation": "da2",
+                "meaning": "da3",
+                "grammarAdjective": {
+                    "masculineSinIndef": "da4",
+                    "masculineSinDef": "da5",
+                    "masculinePlIndef": "da6",
+                    "masculinePlDef": "da7",
+                    "feminineSinIndef": "da8",
+                    "feminineSinDef": "da9",
+                    "femininePlIndef": "da10",
+                    "femininePlDef": "da11",
+                    "neuterSinIndef": "da12",
+                    "neuterSinDef": "da13",
+                    "neuterPlIndef": "da14",
+                    "neuterPlDef": "da15",
+                    "comparative": "da16",
+                    "indefSuperlative": "da17",
+                    "defSuperlative": "da18"
+                }
+            }
+        ]
+    },
+    "addNoun": {
+        "word": "",
+        "translation": [
+            {
+                "type": "noun",
+                "pronounciation": "",
+                "meaning": "",
+                "grammarNoun": {
+                    "countable": "",
+                    "gender": "",
+                    "singularIndefinite": "",
+                    "singularDefinite": "",
+                    "pluralIndefinite": "",
+                    "pluralDefinite": ""
+                }
+            }
+        ]
+    },
+    "addVerb": {
+        "word": "",
+        "translation": [
+            {
+                "type": "verb",
+                "pronounciation": "",
+                "meaning": "",
+                "grammarVerb": {
+                    "infinitive": "",
+                    "present": "",
+                    "past": "",
+                    "future": "",
+                    "conditional": "",
+                    "imperative": "",
+                    "presentPerfect": "",
+                    "pastPerfect": "",
+                    "futurePerfect": "",
+                    "conditionalPerfect": ""
+                }
+            }
+        ]
+    }
+}
