@@ -107,14 +107,16 @@ function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
         }
     };
 
+    const testLangSpeech = `${langSelected}${grammarSelected}`;
+
     return isLoading === false ?
         <Form onSubmit={addCard} noValidate validated={validated} data-testid="testAddForm">
-            <Form.Group as={Row} className="mb-2">
+            <Form.Group as={Row} className="mb-2" data-testid={`testAddWord${testLangSpeech}`}>
                 <Form.Label column md="3">
                     Word
                 </Form.Label>
                 <Col md={9}>
-                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" data-testid="testNorAddNounWordInp" />
+                    <Form.Control ref={wordInput} required type="text" placeholder="Type here" data-testid={`test${testLangSpeech}WordInp`} />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -122,7 +124,7 @@ function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
                     Pronounciation
                 </Form.Label>
                 <Col md={9}>
-                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" data-testid="testNorAddNounPronInp" />
+                    <Form.Control ref={pronInput} required type="text" placeholder="Type here" data-testid={`test${testLangSpeech}PronInp`} />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-2">
@@ -130,16 +132,16 @@ function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
                     Meaning
                 </Form.Label>
                 <Col md={9}>
-                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" data-testid="testNorAddNounMeanInp" />
+                    <Form.Control ref={meanInput} required type="text" placeholder="Type here" data-testid={`test${testLangSpeech}MeanInp`} />
                 </Col>
             </Form.Group>
             {
                 grammarInputNames.map((name, index) => createAddCardInput(name, elRefs[index]))
             }
-            <Button variant="success" type="submit" data-testid="testNorAddNounSubmit">
+            <Button variant="success" type="submit" data-testid={`test${testLangSpeech}Submit`}>
                 Add Card
             </Button>
-        </Form> : <div>LOADING</div>
+        </Form> : <div data-testid="testNULL">LOADING</div>
 }
 
 export default AddCardForm;

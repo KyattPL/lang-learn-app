@@ -15,7 +15,7 @@ test('test AddCard change language', async () => {
    act(() => {
       fireEvent.change(dropdown, { target: { value: "Norwegian" } });
    });
-   await waitFor(() => expect(screen.getByTestId('testNorwegianAddAdjForm')).toBeInTheDocument());
+   await waitFor(() => expect(screen.getByTestId('testAddWordNorwegianAdjective')).toBeInTheDocument());
 });
 
 test('test AddCard change part of speech', async () => {
@@ -25,7 +25,7 @@ test('test AddCard change part of speech', async () => {
       fireEvent.change(screen.getByTestId('testLangDropdown'), { target: { value: "Norwegian" } });
       fireEvent.change(dropdown, { target: { value: "Verb" } });
    });
-   await waitFor(() => expect(screen.getByTestId('testNorwegianAddVerbForm')).toBeInTheDocument());
+   await waitFor(() => expect(screen.getByTestId('testAddWordNorwegianVerb')).toBeInTheDocument());
 });
 
 test('renders AddCardModal after form was filled in', async () => {
@@ -41,10 +41,10 @@ test('renders AddCardModal after form was filled in', async () => {
    });
 
    act(() => {
-      fireEvent.change(screen.getByTestId('testNorAddNounWordInp'), { target: { value: "hund" } });
-      fireEvent.change(screen.getByTestId('testNorAddNounPronInp'), { target: { value: "'hun" } });
-      fireEvent.change(screen.getByTestId('testNorAddNounMeanInp'), { target: { value: "Pies taki o" } });
-      fireEvent.click(screen.getByTestId('testNorAddNounSubmit'));
+      fireEvent.change(screen.getByTestId('testNorwegianNounWordInp'), { target: { value: "hund" } });
+      fireEvent.change(screen.getByTestId('testNorwegianNounPronInp'), { target: { value: "'hun" } });
+      fireEvent.change(screen.getByTestId('testNorwegianNounMeanInp'), { target: { value: "Pies taki o" } });
+      fireEvent.click(screen.getByTestId('testNorwegianNounSubmit'));
    });
 
    await waitFor(() => expect(screen.getByTestId('testAddCardModal')).toBeInTheDocument());

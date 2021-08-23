@@ -1,11 +1,11 @@
-import { render } from "@testing-library/react";
-import { mockComponent } from "react-dom/test-utils";
+import { render, screen } from "@testing-library/react";
+import mockConsole from 'jest-mock-console';
 import Flashcard from "./Flashcard.jsx";
-import NorwegianCard from "./norwegian/NorwegianCard.jsx";
-import DutchCard from "./dutch/DutchCard.jsx";
 
-test("returns null Flashcard component", () => {
-    render(<Flashcard />);
+test("throw error on null Flashcard component",  () => {
+    const restoreConsole = mockConsole();
+    expect(() => render(<Flashcard />)).toThrowError();
+    restoreConsole();
 });
 
 test("returns Norwegian Card", () => {
@@ -27,12 +27,6 @@ test("returns Norwegian Card", () => {
             }
         ]
     };
-    expect(Flashcard({cardLang: "Norwegian", cardObj: testObj}).type).toBe(NorwegianCard);
-});
-
-test("returns Dutch card", () => {
-    const testObj = {
-
-    };
-    expect(Flashcard({cardLang: "Dutch", cardObj: testObj}).type).toBe(DutchCard);
+    render(<Flashcard cardLang="Norwegian" cardObj={testObj} numOfTranslation={0} />);
+    expect(screen.getByText("en hund")).toBeInTheDocument();
 });

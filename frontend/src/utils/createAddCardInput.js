@@ -8,7 +8,7 @@ export const createAddCardInput = (name, ref) => {
     // It breaks when there aren't 3 genders
     if (name === "Gender") {
         result = (
-            <Form.Group as={Row} className="mb-2">
+            <Form.Group key={name} as={Row} className="mb-2">
                 <Form.Label column md="3">
                     Gender
                 </Form.Label>
@@ -23,7 +23,7 @@ export const createAddCardInput = (name, ref) => {
         );
     } else if (name === "Countable") {
         result = (
-            <Form.Group as={Row} className="mb-2">
+            <Form.Group key={name} as={Row} className="mb-2">
                 <Form.Label column md="3">
                     Countable
                 </Form.Label>

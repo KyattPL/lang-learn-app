@@ -20,15 +20,15 @@ const createCell = (index, cell, cardObj, numOfTranslation, grammarType) => {
     let outside = null;
     let inside = null;
 
-    if (cell === '') {
+    if (cell === '' || cell === null) {
         return <td key={index}></td>
     }
 
     if (cell.includes('$')) {
-        let propertyName = cell.replaceAll('$', '');
+        let propertyName = cell.replace(/\$/g, '');
         inside = cardObj['translation'][numOfTranslation][`grammar${grammarType}`][propertyName];
     } else {
-        inside = cell.replaceAll('#', '').replaceAll('*', '');
+        inside = cell.replace(/\#/g, '').replace(/\*/g, '');
     }
 
     if (cell.includes('#') && cell.includes('*')) {
