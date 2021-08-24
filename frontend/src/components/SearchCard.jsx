@@ -83,7 +83,7 @@ function SearchCard() {
                 </Col>
                 <Col xs={numberOfColumns} data-testid="testFormCol">
                     <Form className="mt-2" noValidate validated={validated} onSubmit={searchCard}>
-                        <Form.Row className="align-items-center gapBetweenRows">
+                        <Form.Row className="align-items-center searchCardForm">
                             <Col xs={12} sm={6} md={5}>
                                 <InputGroup>
                                     <InputGroup.Prepend>
