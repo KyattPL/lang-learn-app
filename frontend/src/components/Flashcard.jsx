@@ -28,7 +28,7 @@ const createCell = (index, cell, cardObj, numOfTranslation, grammarType) => {
         let propertyName = cell.replace(/\$/g, '');
         inside = cardObj['translation'][numOfTranslation][`grammar${grammarType}`][propertyName];
     } else {
-        inside = cell.replace(/\#/g, '').replace(/\*/g, '');
+        inside = cell.replace(/#/g, '').replace(/\*/g, '');
     }
 
     if (cell.includes('#') && cell.includes('*')) {

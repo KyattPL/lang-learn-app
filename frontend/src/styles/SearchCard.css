@@ -7,6 +7,7 @@
     box-shadow: none !important;
 }
 
-.gapBetweenRows {
+.searchCardForm {
     grid-row-gap: 0.5rem;
+    align-items: flex-start !important;
 }
