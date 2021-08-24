@@ -37,7 +37,9 @@ function DeleteCardModal({ cardLang, cardId, translationId }) {
                     if (res === "MISSING_LANG_PASSED" || res === "Forbidden") {
                         console.error(res);
                     } else {
-                        window.location.reload();
+                        const searchCardFormObj = document.getElementById('searchCardForm');
+                        searchCardFormObj.dispatchEvent(new Event('submit', { bubbles: true }));
+                        handleClose();
                     }
                 }).catch(err => {
                     console.error("Error: ", err);
@@ -61,7 +63,7 @@ function DeleteCardModal({ cardLang, cardId, translationId }) {
             <Button variant="danger" onClick={handleOpen} data-testid="testOpenModalButton">
                 Delete
             </Button>
-            <Modal show={isShown} onHide={handleClose}>
+            <Modal show={isShown} onHide={handleClose} id="deleteCardModal">
                 <Modal.Header closeButton>
                     <Modal.Title>
                         Authorization required
@@ -71,7 +73,7 @@ function DeleteCardModal({ cardLang, cardId, translationId }) {
                     <Form noValidate validated={validated} id="passwordForm" onSubmit={formSubmit} data-testid="testFormDeleteCard">
                         <Form.Group>
                             <Form.Label>Please type in a password:</Form.Label>
-                            <Form.Control type="password" placeholder="Password" ref={passInput} id="passInput" data-testid="testPassInput"/>
+                            <Form.Control type="password" placeholder="Password" ref={passInput} id="passInput" data-testid="testPassInput" />
                             <Form.Control.Feedback type="invalid">Wrong password</Form.Control.Feedback>
                         </Form.Group>
                     </Form>
