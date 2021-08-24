@@ -32,13 +32,13 @@ const createCell = (index, cell, cardObj, numOfTranslation, grammarType) => {
     }
 
     if (cell.includes('#') && cell.includes('*')) {
-        let numberOfCols = cell.match(/\*/g || []).length;
+        let numberOfCols = cell.match(/\*/g).length;
         outside = <th className="cardTableHeader" colSpan={numberOfCols} key={index}>{inside}</th>;
     } else if (cell.includes('#')) {
         outside = <th className="cardTableHeader" key={index}>{inside}</th>;
-    } else if (cell.includes('*')) {
-        let numberOfCols = cell.match(/\*/g || []).length;
-        outside = <td colSpan={numberOfCols} key={index}>{inside}</td>;
+        // } else if (cell.includes('*')) {
+        //     let numberOfCols = cell.match(/\*/g).length;
+        //     outside = <td colSpan={numberOfCols} key={index}>{inside}</td>;
     } else {
         outside = <td key={index}>{inside}</td>;
     }
@@ -49,7 +49,7 @@ const createCell = (index, cell, cardObj, numOfTranslation, grammarType) => {
 const createRow = (index, row, cardObj, numOfTranslation, grammarType) => {
     return (
         <tr key={index}>
-            { row.map((cell, index) => createCell(index, cell, cardObj, numOfTranslation, grammarType)) }
+            {row.map((cell, index) => createCell(index, cell, cardObj, numOfTranslation, grammarType))}
         </tr>
     )
 }
@@ -58,7 +58,7 @@ const createSingleTable = (index, wholeTable, cardObj, numOfTranslation, grammar
     return (
         <Table bordered hover size="sm" key={index}>
             <tbody data-testid="testCard">
-                { wholeTable.map((row, index) => createRow(index, row, cardObj, numOfTranslation, grammarType)) }
+                {wholeTable.map((row, index) => createRow(index, row, cardObj, numOfTranslation, grammarType))}
             </tbody>
         </Table>
     );
