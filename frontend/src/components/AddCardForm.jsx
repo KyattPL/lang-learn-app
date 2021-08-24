@@ -25,12 +25,17 @@ function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
     useEffect(() => {
 
         async function getGrammarInputNames(lang, grammar) {
+
+            if (lang === undefined || grammar === undefined) {
+                throw new TypeError("Empty parameters were given");
+            }
+
             const file = require(`../langJsons/${lang}.json`);
             const obj = file[`add${grammar}`]['translation'][0][`grammar${grammar}`];
             setGrammarInputNames(Object.values(obj));
         }
 
-        getGrammarInputNames(langSelected, grammarSelected);
+        getGrammarInputNames(langSelected, grammarSelected).catch(err => console.error(err));
     }, [langSelected, grammarSelected]);
 
     useEffect(() => {
