@@ -34,10 +34,10 @@ function SearchCard() {
         }
 
         window.addEventListener('resize', handleResize);
-        window.addEventListener('refresh', e => { searchCard(e); console.log(e) });
+        window.addEventListener('refresh', e => searchCard(e));
         return () => {
             window.removeEventListener('resize', handleResize);
-            window.removeEventListener('refresh', e => { searchCard(document.getElementById('searchCardForm')); console.log(e) });
+            window.removeEventListener('refresh', e => searchCard(e));
         };
     });
 
@@ -52,8 +52,6 @@ function SearchCard() {
     }
 
     const searchCard = (event) => {
-
-        console.log(event);
 
         event.preventDefault();
         event.stopPropagation();
