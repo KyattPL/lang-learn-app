@@ -34,6 +34,11 @@ function SearchCard() {
         }
 
         window.addEventListener('resize', handleResize);
+        window.addEventListener('refresh', e => searchCard(e));
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('refresh', e => searchCard(e));
+        };
     });
 
     let numberOfColumns = windowWidth <= 425 ? 12 : 10;
@@ -77,12 +82,12 @@ function SearchCard() {
     }
 
     return (
-        <Container fluid>
+        <Container fluid id="searchCardContainer">
             <Row>
                 <Col>
                 </Col>
                 <Col xs={numberOfColumns} data-testid="testFormCol">
-                    <Form className="mt-2" noValidate validated={validated} onSubmit={searchCard}>
+                    <Form className="mt-2" noValidate validated={validated} onSubmit={searchCard} id="searchCardForm">
                         <Form.Row className="align-items-center searchCardForm">
                             <Col xs={12} sm={6} md={5}>
                                 <InputGroup>

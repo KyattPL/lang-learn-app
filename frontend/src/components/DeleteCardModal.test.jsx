@@ -143,9 +143,13 @@ test('fail fetchDeleteCard for missing lang', async () => {
 test('successfully delete the card', async () => {
     fetchCheckDeletePassword.mockImplementationOnce(() => Promise.resolve("OK"));
     fetchDeleteCard.mockImplementationOnce(() => Promise.resolve("OK"));
-    const { location } = window;
-    delete window.location;
-    window.location = { reload: jest.fn() };
+
+    document.dispatchEvent = jest.fn();
+    document.getElementById = jest.fn();
+
+    const mockValidated = { setCustomValidity: jest.fn() };
+    const mockForm = { dispatchEvent: jest.fn() };
+    document.getElementById.mockImplementationOnce(() => mockValidated).mockImplementationOnce(() => mockForm);
 
     render(<DeleteCardModal />);
 
@@ -159,6 +163,5 @@ test('successfully delete the card', async () => {
         fireEvent.click(screen.getByTestId('testSendPassButton'));
     });
 
-    await waitFor(() => expect(window.location.reload).toHaveBeenCalled());
-    window.location = location;
+    await waitFor(() => expect(mockForm.dispatchEvent).toHaveBeenCalled());
 });
