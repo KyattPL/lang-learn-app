@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 import { fetchAddCard } from '../utils/fetchAddCard.js';
+import { fetchCheckAddPassword } from '../utils/fetchCheckAddPassword.js';
 import { dashOnEmptyInput } from '../utils/dashOnEmptyInput.js';
 import { createAddCardInput } from '../utils/createAddCardInput.js';
 
@@ -19,6 +20,7 @@ function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
     const wordInput = useRef(null);
     const pronInput = useRef(null);
     const meanInput = useRef(null);
+    const passInput = useRef(null);
 
     const [elRefs, setElRefs] = useState([]);
 
@@ -85,11 +87,21 @@ function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
         return cardObj;
     }
 
-    const addCard = (event) => {
+    const addCard = async (event) => {
         event.preventDefault();
         event.stopPropagation();
 
-        if (event.currentTarget.checkValidity() === true) {
+        const savedTarget = event.currentTarget;
+
+        await fetchCheckAddPassword(passInput.current.value).then(res => {
+            if (res === "Forbidden") {
+                document.getElementById('passInput').setCustomValidity("Wrong password!");
+            } else {
+                document.getElementById('passInput').setCustomValidity("");
+            }
+        });
+
+        if (savedTarget.checkValidity() === true) {
             setValidated(false);
             wordSetter(wordInput.current.value);
             const cardObj = createFetchCardObj(langSelected, grammarSelected);
@@ -143,6 +155,15 @@ function AddCardForm({ langSelected, grammarSelected, wordSetter, showModal }) {
             {
                 grammarInputNames.map((name, index) => createAddCardInput(name, elRefs[index]))
             }
+            <Form.Group as={Row} className="mb-2">
+                <Form.Label column md="3">
+                    Password
+                </Form.Label>
+                <Col md={9}>
+                    <Form.Control ref={passInput} type="password" placeholder="Authorization password" data-testid="testAddCardPassInput" id="passInput" />
+                    <Form.Control.Feedback type="invalid">Wrong password</Form.Control.Feedback>
+                </Col>
+            </Form.Group>
             <Button variant="success" type="submit" data-testid={`test${testLangSpeech}Submit`}>
                 Add Card
             </Button>
