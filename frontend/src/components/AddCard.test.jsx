@@ -1,9 +1,12 @@
 import { act, render, waitFor } from "@testing-library/react";
 import { fireEvent, screen } from "@testing-library/dom";
 import AddCard from "./AddCard";
+
 import { fetchAddCard } from "../utils/fetchAddCard.js";
+import { fetchCheckAddPassword } from '../utils/fetchCheckAddPassword.js';
 
 jest.mock("../utils/fetchAddCard.js");
+jest.mock("../utils/fetchCheckAddPassword.js");
 
 test('renders AddCard ', () => {
    render(<AddCard />);
@@ -31,6 +34,7 @@ test('test AddCard change part of speech', async () => {
 test('renders AddCardModal after form was filled in', async () => {
 
    fetchAddCard.mockResolvedValue('hund');
+   fetchCheckAddPassword.mockResolvedValue('OK');
 
    render(<AddCard />);
    const dropdown = await screen.getByTestId('testSpeechDropdown');

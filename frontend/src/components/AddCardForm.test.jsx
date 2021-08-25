@@ -3,10 +3,14 @@ import { fireEvent } from "@testing-library/dom";
 
 import AddCardForm from './AddCardForm.jsx';
 import { fetchAddCard } from '../utils/fetchAddCard.js';
+import { fetchCheckAddPassword } from '../utils/fetchCheckAddPassword.js';
 
 jest.mock('../utils/fetchAddCard.js');
+jest.mock('../utils/fetchCheckAddPassword.js');
 
 test('submit form with missing required inputs for AddCardForm', async () => {
+
+    fetchCheckAddPassword.mockResolvedValue('OK');
 
     act(() => {
         render(<AddCardForm langSelected="Norwegian" grammarSelected="Noun" wordSetter={() => { }} showModal={() => { }} />);
@@ -37,6 +41,7 @@ test('render AddCardForm for unknown language', async () => {
 test('resolve fetchAddCard with DB_ERR for AddCardForm', async () => {
 
     fetchAddCard.mockResolvedValue('DB_ERR');
+    fetchCheckAddPassword.mockResolvedValue('OK');
 
     console.error = jest.fn();
 
@@ -59,6 +64,7 @@ test('resolve fetchAddCard with DB_ERR for AddCardForm', async () => {
 test('resolve fetchAddCard with Internal Server Error for AddCardForm', async () => {
 
     fetchAddCard.mockResolvedValue('Internal Server Error');
+    fetchCheckAddPassword.mockResolvedValue('OK');
 
     console.error = jest.fn();
 
@@ -81,6 +87,7 @@ test('resolve fetchAddCard with Internal Server Error for AddCardForm', async ()
 test('resolve fetchAddCard with Proxy error for AddCardForm', async () => {
 
     fetchAddCard.mockResolvedValue('Proxy error:');
+    fetchCheckAddPassword.mockResolvedValue('OK');
 
     console.error = jest.fn();
 
@@ -103,6 +110,7 @@ test('resolve fetchAddCard with Proxy error for AddCardForm', async () => {
 test('fail fetchAddCard with 404 status for AddCardForm', async () => {
 
     fetchAddCard.mockRejectedValue('Not Found');
+    fetchCheckAddPassword.mockResolvedValue('OK');
 
     console.error = jest.fn();
 
