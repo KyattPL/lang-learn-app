@@ -1,0 +1,10 @@
+.homepageButton {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: calc(50vh - 28px - 1rem);
+    font-size: 2rem;
+}
+
+.homepageButtonLink:hover {
+    text-decoration: none;
+}
