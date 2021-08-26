@@ -23,9 +23,9 @@
             [
                 [
                     "",
-                    "Positive",
-                    "Comparative",
-                    "Superlative"
+                    "#Positive",
+                    "#Comparative",
+                    "#Superlative"
                 ],
                 [
                     "#Uninflected",
@@ -44,23 +44,33 @@
         "small": [
             [
                 [
-                    "",
-                    "#Uninflected",
-                    "#Inflected"
+                    "#**Uninflected"
                 ],
                 [
                     "#Positive",
-                    "$uninflected",
+                    "$uninflected"
+                ],
+                [
+                    "#Comparative",
+                    "$uninfComparative"
+                ],
+                [
+                    "#Superlative",
+                    "$uninfSuperlative"
+                ],
+                [
+                    "#**Inflected"
+                ],
+                [
+                    "#Positive",
                     "$inflected"
                 ],
                 [
                     "#Comparative",
-                    "$uninfComparative",
                     "$infComparative"
                 ],
                 [
                     "#Superlative",
-                    "$uninfSuperlative",
                     "$infSuperlative"
                 ]
             ]
@@ -88,14 +98,12 @@
             [
                 [
                     "#Plural",
-                    "$plural"
-                ],
-                [
                     "#Singular Diminutive",
-                    "$sinDiminutive"
+                    "#Plural Diminutive"
                 ],
                 [
-                    "#Plural Diminutive",
+                    "$plural",
+                    "$sinDiminutive",
                     "$plDiminutive"
                 ]
             ]
@@ -144,7 +152,111 @@
         ]
     },
     "displayVerb": {
-        "regular": [],
-        "small": []
+        "regular": [
+            [
+                [
+                    "",
+                    "#Present",
+                    "#Past"
+                ],
+                [
+                    "#1st Person",
+                    "$presFirst",
+                    "$pastFirst"
+                ],
+                [
+                    "#2nd Person (Jij)",
+                    "$presJij",
+                    "$pastJij"
+                ],
+                [
+                    "#2nd Person (U)",
+                    "$presU",
+                    "$pastU"
+                ],
+                [
+                    "#3rd Person",
+                    "$presThird",
+                    "$pastThird"
+                ],
+                [
+                    "#Plural",
+                    "$presPlural",
+                    "$pastPlural"
+                ],
+                [
+                    "#Imperative",
+                    "$presImperative",
+                    ""
+                ],
+                [
+                    "#Participles",
+                    "$presParticiple",
+                    "$pastParticiple"
+                ]
+            ]
+        ],
+        "small": [
+            [
+                [
+                    "#**Present"
+                ],
+                [
+                    "#1st Person",
+                    "$presFirst"
+                ],
+                [
+                    "#2nd Person (Jij)",
+                    "$presJij"
+                ],
+                [
+                    "#2nd Person (U)",
+                    "$presU"
+                ],
+                [
+                    "#3rd Person",
+                    "$presThird"
+                ],
+                [
+                    "#Plural",
+                    "$presPlural"
+                ],
+                [
+                    "#Imperative",
+                    "$presImperative"
+                ],
+                [
+                    "#Participle",
+                    "$presParticiple"
+                ],
+                [
+                    "#**Past"
+                ],
+                [
+                    "#1st Person",
+                    "$pastFirst"
+                ],
+                [
+                    "#2nd Person (Jij)",
+                    "$pastJij"
+                ],
+                [
+                    "#2nd Person (U)",
+                    "$pastU"
+                ],
+                [
+                    "#3rd Person",
+                    "$pastThird"
+                ],
+                [
+                    "#Plural",
+                    "$pastPlural"
+                ],
+                [
+                    "#Participle",
+                    "$pastParticiple"
+                ]
+            ]
+        ]
     }
 }
