@@ -1,0 +1,32 @@
+{
+    "addAdjective": {
+        "word": "Word",
+        "translation": [
+            {
+                "type": "adjective",
+                "pronounciation": "Pronounciation",
+                "meaning": "Meaning"
+            }
+        ]
+    },
+    "addNoun": {
+        "word": "Word",
+        "translation": [
+            {
+                "type": "noun",
+                "pronounciation": "Pronounciation",
+                "meaning": "Meaning"
+            }
+        ]
+    },
+    "addVerb": {
+        "word": "Word",
+        "translation": [
+            {
+                "type": "verb",
+                "pronounciation": "Pronounciation",
+                "meaning": "Meaning"
+            }
+        ]
+    }
+}
