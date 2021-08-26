@@ -1,69 +1,262 @@
 {
     "addAdjective": {
-        "word": "da1",
+        "word": "Word",
         "translation": [
             {
                 "type": "adjective",
-                "pronounciation": "da2",
-                "meaning": "da3",
+                "pronounciation": "Pronounciation",
+                "meaning": "Meaning",
                 "grammarAdjective": {
-                    "masculineSinIndef": "da4",
-                    "masculineSinDef": "da5",
-                    "masculinePlIndef": "da6",
-                    "masculinePlDef": "da7",
-                    "feminineSinIndef": "da8",
-                    "feminineSinDef": "da9",
-                    "femininePlIndef": "da10",
-                    "femininePlDef": "da11",
-                    "neuterSinIndef": "da12",
-                    "neuterSinDef": "da13",
-                    "neuterPlIndef": "da14",
-                    "neuterPlDef": "da15",
-                    "comparative": "da16",
-                    "indefSuperlative": "da17",
-                    "defSuperlative": "da18"
+                    "uninflected": "Uninflected",
+                    "inflected": "Inflected",
+                    "partitive": "Partitive",
+                    "uninfComparative": "Uninflected Comparative",
+                    "infComparative": "Inflected Comparative",
+                    "uninfSuperlative": "Uninflected Superlative",
+                    "infSuperlative": "Inflected Superlative"
                 }
             }
+        ]
+    },
+    "displayAdjective": {
+        "regular": [
+            [
+                [
+                    "",
+                    "#Positive",
+                    "#Comparative",
+                    "#Superlative"
+                ],
+                [
+                    "#Uninflected",
+                    "$uninflected",
+                    "$uninfComparative",
+                    "$infComparative"
+                ],
+                [
+                    "#Inflected",
+                    "$inflected",
+                    "$infComparative",
+                    "$infSuperlative"
+                ]
+            ]
+        ],
+        "small": [
+            [
+                [
+                    "#**Uninflected"
+                ],
+                [
+                    "#Positive",
+                    "$uninflected"
+                ],
+                [
+                    "#Comparative",
+                    "$uninfComparative"
+                ],
+                [
+                    "#Superlative",
+                    "$uninfSuperlative"
+                ],
+                [
+                    "#**Inflected"
+                ],
+                [
+                    "#Positive",
+                    "$inflected"
+                ],
+                [
+                    "#Comparative",
+                    "$infComparative"
+                ],
+                [
+                    "#Superlative",
+                    "$infSuperlative"
+                ]
+            ]
         ]
     },
     "addNoun": {
-        "word": "",
+        "word": "Word",
         "translation": [
             {
                 "type": "noun",
-                "pronounciation": "",
-                "meaning": "",
+                "pronounciation": "Pronounciation",
+                "meaning": "Meaning",
                 "grammarNoun": {
-                    "countable": "",
-                    "gender": "",
-                    "singularIndefinite": "",
-                    "singularDefinite": "",
-                    "pluralIndefinite": "",
-                    "pluralDefinite": ""
+                    "gender": "Gender",
+                    "article": "Article",
+                    "plural": "Plural",
+                    "sinDiminutive": "Singular Diminutive",
+                    "plDiminutive": "Plural Diminutive"
                 }
             }
         ]
     },
+    "displayNoun": {
+        "regular": [
+            [
+                [
+                    "#Plural",
+                    "#Singular Diminutive",
+                    "#Plural Diminutive"
+                ],
+                [
+                    "$plural",
+                    "$sinDiminutive",
+                    "$plDiminutive"
+                ]
+            ]
+        ],
+        "small": [
+            [
+                [
+                    "#Plural",
+                    "$plural"
+                ],
+                [
+                    "#Singular Diminutive",
+                    "$sinDiminutive"
+                ],
+                [
+                    "#Plural Diminutive",
+                    "$plDiminutive"
+                ]
+            ]
+        ]
+    },
     "addVerb": {
-        "word": "",
+        "word": "Word",
         "translation": [
             {
                 "type": "verb",
-                "pronounciation": "",
-                "meaning": "",
+                "pronounciation": "Pronounciation",
+                "meaning": "Meaning",
                 "grammarVerb": {
-                    "infinitive": "",
-                    "present": "",
-                    "past": "",
-                    "future": "",
-                    "conditional": "",
-                    "imperative": "",
-                    "presentPerfect": "",
-                    "pastPerfect": "",
-                    "futurePerfect": "",
-                    "conditionalPerfect": ""
+                    "infinitive": "Infinitive",
+                    "presFirst": "Present 1st pers.",
+                    "presJij": "Present 2nd pers. (Jij)",
+                    "presU": "Present 2nd pers. (U)",
+                    "presThird": "Present 3rd pers.",
+                    "presPlural": "Present Plural",
+                    "presImperative": "Present Imperative",
+                    "presParticiple": "Present Participle",
+                    "pastFirst": "Past 1st pers.",
+                    "pastJij": "Past 2nd pers. (Jij)",
+                    "pastU": "Past 2nd pers. (U)",
+                    "pastThird": "Past 3rd pers.",
+                    "pastPlural": "Past Plural",
+                    "pastParticiple": "Past Participle"
                 }
             }
+        ]
+    },
+    "displayVerb": {
+        "regular": [
+            [
+                [
+                    "",
+                    "#Present",
+                    "#Past"
+                ],
+                [
+                    "#1st Person",
+                    "$presFirst",
+                    "$pastFirst"
+                ],
+                [
+                    "#2nd Person (Jij)",
+                    "$presJij",
+                    "$pastJij"
+                ],
+                [
+                    "#2nd Person (U)",
+                    "$presU",
+                    "$pastU"
+                ],
+                [
+                    "#3rd Person",
+                    "$presThird",
+                    "$pastThird"
+                ],
+                [
+                    "#Plural",
+                    "$presPlural",
+                    "$pastPlural"
+                ],
+                [
+                    "#Imperative",
+                    "$presImperative",
+                    ""
+                ],
+                [
+                    "#Participles",
+                    "$presParticiple",
+                    "$pastParticiple"
+                ]
+            ]
+        ],
+        "small": [
+            [
+                [
+                    "#**Present"
+                ],
+                [
+                    "#1st Person",
+                    "$presFirst"
+                ],
+                [
+                    "#2nd Person (Jij)",
+                    "$presJij"
+                ],
+                [
+                    "#2nd Person (U)",
+                    "$presU"
+                ],
+                [
+                    "#3rd Person",
+                    "$presThird"
+                ],
+                [
+                    "#Plural",
+                    "$presPlural"
+                ],
+                [
+                    "#Imperative",
+                    "$presImperative"
+                ],
+                [
+                    "#Participle",
+                    "$presParticiple"
+                ],
+                [
+                    "#**Past"
+                ],
+                [
+                    "#1st Person",
+                    "$pastFirst"
+                ],
+                [
+                    "#2nd Person (Jij)",
+                    "$pastJij"
+                ],
+                [
+                    "#2nd Person (U)",
+                    "$pastU"
+                ],
+                [
+                    "#3rd Person",
+                    "$pastThird"
+                ],
+                [
+                    "#Plural",
+                    "$pastPlural"
+                ],
+                [
+                    "#Participle",
+                    "$pastParticiple"
+                ]
+            ]
         ]
     }
 }
