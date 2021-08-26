@@ -48,7 +48,7 @@ const translationSchema = new mongoose.Schema({
         type: nounSchema,
         default: undefined
     },
-    grammarAdj: {
+    grammarAdjective: {
         type: adjSchema,
         default: undefined
     },
